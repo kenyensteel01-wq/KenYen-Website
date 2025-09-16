@@ -67,10 +67,22 @@
     }
     .logo-wrap{
       width:64px;height:64px;border-radius:12px;overflow:hidden;flex-shrink:0;
-      display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--yellow));
+      display:grid;place-items:center;
+      /* subtle multi-color ring background so logo always reads well */
+      background: radial-gradient(circle at 30% 30%, rgba(245,183,0,0.12), transparent 15%),
+                  radial-gradient(circle at 80% 80%, rgba(214,40,40,0.06), transparent 18%),
+                  linear-gradient(135deg,var(--blue),var(--yellow));
       box-shadow: var(--shadow);
+      border: 2px solid rgba(255,255,255,0.45);
     }
-    .logo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+    .logo-wrap img{
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+    /* fallback text in logo-wrap if image not available */
+    .logo-text{
+      font-weight:800; color:#fff; font-size:0.95rem; letter-spacing:0.6px;
+      text-align:center; padding:6px;
+    }
 
     .titles{display:flex;flex-direction:column;line-height:1}
     .titles .title{font-weight:700;font-size:1.05rem;color:var(--blue)}
@@ -169,18 +181,17 @@
 
     /* Focus visible */
     :focus{outline:3px solid rgba(11,79,122,0.12);outline-offset:3px}
-
-    /* Logo fallback initials inside logo-wrap if image missing */
-    .logo-initials{font-weight:800;color:#fff;font-size:1.05rem}
   </style>
 </head>
 <body>
   <header role="banner" aria-label="Main header">
     <div class="header-inner container">
       <a class="brand" href="#home" title="KENYEN home">
+        <!-- logo-wrap now contains the actual logo image (LOGO.jpg) next to the name -->
         <div class="logo-wrap" id="logoWrap">
-          <!-- Replace LOGO.jpg in the same folder as this HTML file -->
-          <img id="brandLogo" src="LOGO.jpg" alt="KENYEN logo">
+          <!-- Put your LOGO.jpg file in the same folder as this HTML file.
+               This image will be displayed beside the company name as requested. -->
+          <img id="brandLogo" src="LOGO.jpg" alt="KENYEN Steel Works & Construction Services logo">
         </div>
 
         <div class="titles">
@@ -294,7 +305,7 @@
         <aside>
           <div id="ceo" class="ceo" aria-labelledby="ceoName">
             <div class="photo" aria-hidden="false">
-              <!-- Place LOGO.jpg and the profile image in the same folder -->
+              <!-- Profile photo -->
               <img src="440239264_1445261156088996_7180069057551357572_n.jpg" alt="Erwin C. Laurel, Founder and CEO">
             </div>
             <div>
@@ -518,22 +529,21 @@
       window.addEventListener('load', highlight);
       window.addEventListener('resize', highlight);
 
-      // Logo image fallback: if LOGO.jpg missing or fails, show initials inside logo-wrap
+      // Logo image fallback: if LOGO.jpg missing or fails, show "KENYEN" text inside logo-wrap
       function setLogoFallback(){
-        if(!brandLogo) return;
-        // If image failed to load or has zero naturalWidth -> fallback
+        if(!brandLogo || !logoWrap) return;
         if(brandLogo.complete){
           if(brandLogo.naturalWidth === 0){
-            showInitials();
+            showLogoText();
           }
         } else {
-          brandLogo.addEventListener('error', showInitials, { once:true });
+          brandLogo.addEventListener('error', showLogoText, { once:true });
         }
       }
-      function showInitials(){
-        if(!logoWrap) return;
-        logoWrap.innerHTML = '<div class="logo-initials" aria-hidden="true">KS</div>';
-        logoWrap.style.background = 'linear-gradient(135deg,var(--blue),var(--yellow))';
+      function showLogoText(){
+        logoWrap.innerHTML = '<div class="logo-text" aria-hidden="true">KENYEN</div>';
+        // set a mixed background so it still matches the color scheme
+        logoWrap.style.background = 'linear-gradient(135deg,var(--blue), var(--yellow), var(--red))';
       }
       setLogoFallback();
 
