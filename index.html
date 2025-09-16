@@ -6,6 +6,11 @@
   <title>Kenyen Steel Works & Construction Services</title>
   <meta name="description" content="Kenyen — structural steel fabrication & construction." />
 
+  <!-- Poppins font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     /* Softer, user-friendly palette and clean layout */
     :root{
@@ -13,11 +18,11 @@
       --card: #ffffff;               /* card background */
       --muted-bg: #eef3f7;           /* gentle panel background */
       --text: #0b2b3a;               /* dark, neutral for main text (not bright blue) */
-      --primary: rgba(0,0,255,0.88); /* use original blue but softened with slight opacity */
+      --primary: rgba(0,0,255,0.88); /* blue softened with slight opacity */
       --primary-100: rgba(0,0,255,0.07);
       --accent: rgba(255,199,0,0.88);/* yellow softened */
       --danger: rgba(255,0,0,0.72);  /* red used sparingly and softened */
-      --muted: #6b7780;             /* neutral muted color for secondary text */
+      --muted: #6b7780;              /* neutral muted color for secondary text */
       --radius: 12px;
       --container:1100px;
       --shadow: 0 10px 30px rgba(10,30,60,0.06);
@@ -28,12 +33,14 @@
     html{ scroll-behavior:smooth; scroll-padding-top:var(--header-h); }
     body{
       margin:0;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       background:var(--bg);
       color:var(--text);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
+      font-weight:400;
+      font-size:16px;
     }
 
     a{ color:inherit; text-decoration:none; }
@@ -66,7 +73,7 @@
 
     .titles{ display:flex; flex-direction:column; min-width:0; }
     .brand-title{
-      font-weight:800; font-size:clamp(1.05rem,2.6vw,1.6rem);
+      font-weight:700; font-size:clamp(1.05rem,2.6vw,1.6rem);
       color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
     .brand-sub{ font-size:0.88rem; color:var(--muted); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -74,7 +81,7 @@
     /* Nav centered */
     nav{ display:flex; gap:8px; align-items:center; justify-self:center; min-width:0; overflow:hidden; }
     .nav-link{
-      padding:.46rem .7rem; border-radius:9px; font-weight:700; font-size:0.95rem; color:var(--text);
+      padding:.46rem .7rem; border-radius:9px; font-weight:600; font-size:0.95rem; color:var(--text);
       transition:background .15s ease, transform .12s ease;
       background: transparent;
     }
@@ -85,14 +92,14 @@
     .actions{ display:flex; gap:10px; align-items:center; }
     .btn-primary{
       background: linear-gradient(90deg, rgba(0,0,255,0.95), rgba(0,0,255,0.86));
-      color:#fff; padding:.55rem .95rem; border-radius:999px; font-weight:900; border:0;
+      color:#fff; padding:.55rem .95rem; border-radius:999px; font-weight:800; border:0;
       box-shadow: 0 8px 20px rgba(0,0,255,0.08);
       transition: transform .12s ease, box-shadow .12s ease;
     }
     .btn-primary:hover{ transform:translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,255,0.08); }
 
     .btn-secondary{
-      background:transparent; border:1px solid rgba(0,0,0,0.06); padding:.48rem .8rem; border-radius:9px; font-weight:700;
+      background:transparent; border:1px solid rgba(0,0,0,0.06); padding:.48rem .8rem; border-radius:9px; font-weight:600;
       color:var(--text);
     }
 
@@ -114,21 +121,21 @@
 
     .card{ background:var(--card); border-radius:12px; padding:18px; box-shadow:var(--shadow); border:1px solid rgba(11,43,70,0.04); }
 
-    .kicker{ display:inline-block; background:var(--accent); color:#111; padding:.28rem .6rem; border-radius:999px; font-weight:800; font-size:.88rem; }
+    .kicker{ display:inline-block; background:var(--accent); color:#111; padding:.28rem .6rem; border-radius:999px; font-weight:700; font-size:.88rem; }
 
-    h1{ margin:.6rem 0 0; font-size:1.7rem; color:var(--text); line-height:1.06; }
+    h1{ margin:.6rem 0 0; font-size:1.7rem; color:var(--text); line-height:1.06; font-weight:700; }
     p.lead{ margin-top:12px; color:var(--muted); font-size:1rem; }
 
     .hero-actions{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
     .stats{ margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; }
     .stat{ background:var(--muted-bg); padding:.6rem .9rem; border-radius:9px; min-width:96px; text-align:center; border:1px solid rgba(11,43,70,0.02); }
-    .stat strong{ display:block; color:var(--text); font-weight:900; }
+    .stat strong{ display:block; color:var(--text); font-weight:800; }
 
     .contact-card{ display:flex; flex-direction:column; gap:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg, #fff, #fbfdff); border:1px solid rgba(11,43,70,0.03); box-shadow:var(--shadow); }
 
     .section { margin-top:20px; }
     .section-title{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
-    .section-title h2{ margin:0; color:var(--text); font-size:1.05rem; font-weight:800; }
+    .section-title h2{ margin:0; color:var(--text); font-size:1.05rem; font-weight:700; }
 
     .two-col{ display:grid; grid-template-columns:1fr 420px; gap:16px; margin-top:12px; }
     @media (max-width:980px){ .two-col{ grid-template-columns:1fr; } }
@@ -137,7 +144,7 @@
 
     .project{ background:var(--card); border-radius:10px; padding:12px; border:1px solid rgba(11,43,70,0.03); box-shadow: 0 8px 18px rgba(11,43,70,0.04); display:flex; flex-direction:column; gap:8px; }
 
-    .project .media{ height:110px; border-radius:8px; background:var(--muted-bg); display:grid; place-items:center; font-weight:800; color:var(--text); }
+    .project .media{ height:110px; border-radius:8px; background:var(--muted-bg); display:grid; place-items:center; font-weight:700; color:var(--text); }
 
     .contact-grid{ display:grid; grid-template-columns:1fr 320px; gap:14px; margin-top:12px; }
     @media (max-width:980px){ .contact-grid{ grid-template-columns:1fr; } }
@@ -241,7 +248,7 @@
 
         <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
           <div>
-            <div style="font-weight:800">Phone</div>
+            <div style="font-weight:700">Phone</div>
             <div style="color:var(--muted)"><a href="tel:+63848230528">(084) 823 0528</a></div>
           </div>
           <div style="font-weight:700;color:var(--primary)">📞</div>
@@ -249,7 +256,7 @@
 
         <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
           <div>
-            <div style="font-weight:800">Email</div>
+            <div style="font-weight:700">Email</div>
             <div style="color:var(--muted)"><a href="mailto:kenyenconstructionservices@gmail.com">kenyenconstructionservices@gmail.com</a></div>
           </div>
           <div style="font-weight:700;color:var(--danger)">✉️</div>
@@ -292,8 +299,8 @@
                 <img src="https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/440239264_1445261156088996_7180069057551357572_n.jpg" alt="Erwin C. Laurel" style="width:100%;height:100%;object-fit:cover">
               </div>
               <div>
-                <div id="ceoName" style="font-weight:800;color:var(--text)">Erwin C. Laurel</div>
-                <div style="color:var(--muted);font-weight:700;margin-top:6px">Founder & CEO</div>
+                <div id="ceoName" style="font-weight:700;color:var(--text)">Erwin C. Laurel</div>
+                <div style="color:var(--muted);font-weight:600;margin-top:6px">Founder & CEO</div>
                 <p class="quote" style="margin-top:10px;padding-left:8px;border-left:3px solid var(--primary);background:#fbfdff;border-radius:6px">"We build with integrity — delivering safe, efficient and durable solutions."</p>
               </div>
             </div>
@@ -317,25 +324,25 @@
       <div class="projects-grid" role="list">
         <article class="project" role="listitem">
           <div class="media">PANABO FIRE STATION</div>
-          <div style="font-weight:800;color:var(--text)">Repair & Improvement of Panabo City Fire Station</div>
+          <div style="font-weight:700;color:var(--text)">Repair & Improvement of Panabo City Fire Station</div>
           <div class="meta" style="color:var(--muted)">San Pedro — Completed Aug 2025</div>
         </article>
 
         <article class="project" role="listitem">
           <div class="media">DELA CRUZ HOTEL</div>
-          <div style="font-weight:800;color:var(--text)">Dela Cruz Hotel — Renovation</div>
+          <div style="font-weight:700;color:var(--text)">Dela Cruz Hotel — Renovation</div>
           <div class="meta" style="color:var(--muted)">San Pedro — Completed Sep 2025</div>
         </article>
 
         <article class="project" role="listitem">
           <div class="media">FENCE & GATE</div>
-          <div style="font-weight:800;color:var(--text)">Concrete Fence + Steel Gate</div>
+          <div style="font-weight:700;color:var(--text)">Concrete Fence + Steel Gate</div>
           <div class="meta" style="color:var(--muted)">San Andres — Completed Jun 2025</div>
         </article>
 
         <article class="project" role="listitem">
           <div class="media">ROAD PAVEMENT</div>
-          <div style="font-weight:800;color:var(--text)">Concreting of Road Pavement</div>
+          <div style="font-weight:700;color:var(--text)">Concreting of Road Pavement</div>
           <div class="meta" style="color:var(--muted)">San Andres — Completed Aug 2025</div>
         </article>
       </div>
@@ -353,11 +360,11 @@
           <p style="color:var(--muted)">For inquiries, technical questions or quotations, call or email. We respond promptly and can schedule site visits.</p>
           <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
             <div>
-              <div style="font-weight:800">Phone</div>
+              <div style="font-weight:700">Phone</div>
               <div style="color:var(--muted)"><a href="tel:+63848230528">(084) 823 0528</a></div>
             </div>
             <div>
-              <div style="font-weight:800">Email</div>
+              <div style="font-weight:700">Email</div>
               <div style="color:var(--muted)"><a href="mailto:kenyenconstructionservices@gmail.com">kenyenconstructionservices@gmail.com</a></div>
             </div>
           </div>
@@ -369,13 +376,13 @@
         </div>
 
         <aside class="card" aria-label="office details">
-          <div style="font-weight:800;color:var(--text)">Office</div>
+          <div style="font-weight:700;color:var(--text)">Office</div>
           <div style="color:var(--muted)">Purok 9, Phase 3, Urban Salvacion — Panabo City</div>
           <div style="height:10px"></div>
-          <div style="font-weight:800;color:var(--text)">Office Hours</div>
+          <div style="font-weight:700;color:var(--text)">Office Hours</div>
           <div style="color:var(--muted)">Mon–Sat: 8:00 AM – 5:00 PM</div>
           <div style="height:10px"></div>
-          <div style="font-weight:800;color:var(--text)">Company</div>
+          <div style="font-weight:700;color:var(--text)">Company</div>
           <div style="color:var(--muted)">Kenyen Steel Works & Construction Services</div>
         </aside>
       </div>
@@ -439,7 +446,7 @@
         drawer.classList.add('open');
         drawerBackdrop.setAttribute('aria-hidden','false');
         drawer.setAttribute('aria-modal','true');
-        menuToggle.setAttribute('aria-expanded','true');
+        if (menuToggle) menuToggle.setAttribute('aria-expanded','true');
         // disable body scroll on small screens
         if (window.matchMedia('(max-width:920px)').matches) document.body.style.overflow = 'hidden';
       }
@@ -449,7 +456,7 @@
         drawer.classList.remove('open');
         drawerBackdrop.setAttribute('aria-hidden','true');
         drawer.setAttribute('aria-modal','false');
-        menuToggle.setAttribute('aria-expanded','false');
+        if (menuToggle) menuToggle.setAttribute('aria-expanded','false');
         document.body.style.overflow = '';
       }
       function toggleDrawer(){ if (drawer.classList.contains('open')) closeDrawer(); else openDrawer(); }
@@ -483,7 +490,12 @@
       }
 
       // close drawer when resize from mobile to desktop
-      window.matchMedia('(min-width:921px)').addEventListener('change', (e)=>{ if (e.matches) closeDrawer(); });
+      const mediaQuery = window.matchMedia('(min-width:921px)');
+      if (mediaQuery && mediaQuery.addEventListener) {
+        mediaQuery.addEventListener('change', (e)=>{ if (e.matches) closeDrawer(); });
+      } else if (mediaQuery && mediaQuery.addListener) {
+        mediaQuery.addListener((e)=>{ if (e.matches) closeDrawer(); });
+      }
 
       // keyboard: escape closes drawer
       window.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeDrawer(); });
@@ -492,7 +504,7 @@
       (function logoFallback(){
         if (!brandLogo || !logoWrap) return;
         function fallback(){
-          logoWrap.innerHTML = '<div style="font-weight:800;color:var(--text);font-size:13px;letter-spacing:.6px;">KENYEN</div>';
+          logoWrap.innerHTML = '<div style="font-weight:700;color:var(--text);font-size:13px;letter-spacing:.6px;">KENYEN</div>';
           logoWrap.style.background = 'linear-gradient(180deg, rgba(0,0,255,0.06), rgba(255,199,0,0.04))';
         }
         if (brandLogo.complete){
