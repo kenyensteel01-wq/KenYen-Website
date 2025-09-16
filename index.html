@@ -143,12 +143,12 @@
 
     #about{ margin-top:1.1rem; border-radius:12px; overflow:hidden; position:relative; background-image:url('Pics/TEAM.jpg'); background-size:cover; background-position:center; min-height:240px; display:flex; align-items:center }
     #about::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(3,9,24,0.62), rgba(3,9,24,0.45)); z-index:0 }
-    #about .about-inner{ position:relative; z-index:1; width:100%; padding:1.4rem; color:#fff }
+    #about .about-inner{ position:relative; z-index:1; width:100%; padding:1.4rem; color:#fff; background: rgba(3,9,24,0.6); border-radius: 12px; }
 
     .about-card{ margin-top:1rem; background: rgba(255,255,255,0.98); color:var(--dark); border-radius:12px; padding:1rem; box-shadow:0 8px 20px rgba(11,34,51,0.06); display:grid; grid-template-columns:1fr 260px; gap:1rem }
     @media (max-width:860px){ .about-card{ grid-template-columns:1fr } }
 
-    .founders{ display:grid; grid-template-columns:repeat(1,1fr); gap:1rem; margin-top:1rem }
+    .founders{ display:grid; grid-template-columns:1fr; gap:1rem; margin-top:1rem }
     @media (max-width:980px){ .founders{ grid-template-columns:1fr } }
     @media (max-width:640px){ .founders{ grid-template-columns:1fr } }
 
@@ -232,69 +232,47 @@
     </section>
 
     <section id="about" aria-labelledby="aboutTitle">
-      <div id="aboutInner" class="about-inner" style="margin-top:16px;">
-        <div style="background-image:url('Pics/TEAM.jpg');background-size:cover;background-position:center;border-radius:12px;padding:1.2rem;position:relative;overflow:hidden;">
-          <div style="position:relative;z-index:1;color:#fff">
-            <h2 id="aboutTitle" style="margin:0 0 .6rem 0">About Us</h2>
-            <p style="margin:0 0 12px 0">Committed to engineering excellence and timely delivery. Our team works across fabrication, detailing and site execution to deliver projects safely and on time.</p>
+      <div class="about-inner">
+        <h2 id="aboutTitle" style="margin-top:0; color:#f5b700;">Introduction</h2>
+        <p style="color:#ddd; font-size:1rem; line-height:1.5em; margin-bottom:1.4rem;">
+          KenYen Steel Works and Services is a trusted name in Panabo City, recognized for delivering high-quality construction and steelwork solutions. With a strong commitment to safety and client satisfaction, we provide reliable services that meet the needs of both residential and commercial projects.
+        </p>
 
-            <div class="about-card" role="region" aria-label="About details" style="margin-top:12px;">
-              <div>
-                <h4 style="margin:0 0 .5rem 0;color:var(--accent)">Who we are</h4>
-                <p style="margin:0;color:var(--muted)">Full-service steel fabrication & construction firm. We provide engineering, certified welding, project management and site erection services tailored to each project.</p>
+        <h3 style="color:#f5b700; margin-top:0;">Mission</h3>
+        <p style="color:#ddd; font-size:1rem; line-height:1.5em; margin-bottom:1.4rem;">
+          Providing safe, high-quality, and affordable steel fabrication through stewardship, innovation, and a commitment to environmental responsibility.
+        </p>
 
-                <div style="margin-top:12px">
-                  <h5 style="margin:0 0 .5rem 0;color:var(--accent)">Capabilities</h5>
-                  <ul style="margin:0;padding-left:1rem;color:var(--muted)">
-                    <li>Structural steel fabrication & welding</li>
-                    <li>Engineering, detailing & shop drawings</li>
-                    <li>Site erection, civil works & maintenance</li>
-                  </ul>
-                </div>
-              </div>
+        <h3 style="color:#f5b700; margin-top:0;">Vision</h3>
+        <p style="color:#ddd; font-size:1rem; line-height:1.5em; margin-bottom:1.4rem;">
+          To become the top provider of innovative, sustainable construction and steel solutions in Panabo City and beyond. We aim to set new standards for quality, safety, and client satisfaction while fostering lasting relationships through excellence and teamwork.
+        </p>
 
-              <div>
-                <h5 style="margin:0 0 .5rem 0;color:var(--accent)">Quick Facts</h5>
-                <div style="display:flex;flex-direction:column;gap:8px;color:var(--muted)">
-                  <div style="display:flex;justify-content:space-between"><span>Established</span><strong>2008</strong></div>
-                  <div style="display:flex;justify-content:space-between"><span>TIN</span><strong>00-000-000</strong></div>
-                  <div style="display:flex;justify-content:space-between"><span>Location</span><strong>Purok 9, Phase 3, Urban Salvacion</strong></div>
-                  <a class="btn-ghost" href="#" style="display:inline-block;margin-top:6px">Download Profile (PDF)</a>
-                </div>
-              </div>
-            </div>
+        <h3 style="color:#f5b700; margin-top:0;">Key Objectives</h3>
+        <ul style="color:#ccc; font-size:1rem; line-height:1.5em; margin-left:1.2rem;">
+          <li>Provide top-tier construction solutions with a focus on safety, efficiency, and innovation.</li>
+          <li>Ensure consistent client satisfaction through excellence in service delivery.</li>
+          <li>Promote sustainable growth across all operations.</li>
+          <li>Strengthen our presence and contribute to the development of Panabo City.</li>
+        </ul>
 
-            <div style="margin-top:1rem; background: rgba(255 255 255 / 0.9); padding: 1rem; border-radius: 12px; color: var(--dark); box-shadow: 0 8px 20px rgba(11,34,51,0.06);">
-              <h3 style="margin-top:0; color: var(--accent)">Our History</h3>
-              <p style="margin-top:0; color: var(--muted); white-space: pre-line;">
-                "KenYen Steel Works and Construction Services" was founded in year 2011 by Mr. Erwin C. Laurel. This was built up due to the skills and passion for architecture by the owner. He was able to put up this business as a family-owned firm. The said business has done ample and numerous construction services in the locality of Panabo and even in other neighboring cities.
+        <div style="margin-top:1.6rem; background: rgba(255 255 255 / 0.9); padding: 1rem; border-radius: 12px; color: var(--dark); box-shadow: 0 8px 20px rgba(11,34,51,0.06);">
+          <h3 style="margin-top:0; color: var(--accent)">Our History</h3>
+          <p style="margin-top:0; color: var(--muted); white-space: pre-line;">
+            "KenYen Steel Works and Construction Services" was founded in year 2011 by Mr. Erwin C. Laurel. This was built up due to the skills and passion for architecture by the owner. He was able to put up this business as a family-owned firm. The said business has done ample and numerous construction services in the locality of Panabo and even in other neighboring cities.
 
-                KenYen is dedicated to ensure that all of its activities are carried out to the highest possible standards and that construction projects are:
-                • Built in accordance with contract specifications and drawings
-                • In compliance with building regulations, planning & statutory requirements
-                • In conformity with industry best practice
-                • Completed to the satisfaction of the team and clients
-              </p>
-            </div>
+            KenYen is dedicated to ensure that all of its activities are carried out to the highest possible standards and that construction projects are:
+            • Built in accordance with contract specifications and drawings
+            • In compliance with building regulations, planning & statutory requirements
+            • In conformity with industry best practice
+            • Completed to the satisfaction of the team and clients
+          </p>
+        </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-              <div class="card">
-                <h4 style="margin:0 0 .5rem 0;color:var(--accent)">Our Mission</h4>
-                <p style="margin:0;color:var(--muted)">To deliver safe, high-quality steel fabrication and construction solutions that exceed client expectations through skilled people, sound engineering, and efficient execution.</p>
-              </div>
-
-              <div class="card">
-                <h4 style="margin:0 0 .5rem 0;color:var(--accent)">Our Vision</h4>
-                <p style="margin:0;color:var(--muted)">To be a leading regional partner in structural steel and construction, recognized for reliability, innovation, and sustainable practices.</p>
-              </div>
-            </div>
-
-            <div class="founders" style="margin-top:12px">
-              <div class="card" style="display:flex;gap:.6rem;align-items:flex-start">
-                <div style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff;font-weight:800">EC</div>
-                <div><div style="font-weight:800;color:var(--accent)">Erwin C. Laurel</div><div style="color:var(--muted)">Founder & Managing Director</div></div>
-              </div>
-            </div>
+        <div class="founders" style="margin-top:12px">
+          <div class="card" style="display:flex;gap:.6rem;align-items:flex-start">
+            <div style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff;font-weight:800">EC</div>
+            <div><div style="font-weight:800;color:var(--accent)">Erwin C. Laurel</div><div style="color:var(--muted)">Founder & Managing Director</div></div>
           </div>
         </div>
       </div>
@@ -314,13 +292,13 @@
         <div class="card">
           <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
             <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff">📞</div>
-            <div><div style="font-weight:800">Phone</div><div style="color:var(--muted)">0909 426 9488</div></div>
+            <div><div style="font-weight:800">Phone</div><div style="color:var(--muted)"> (084) 823 0528 </div></div>
           </div>
           <div style="display:flex;gap:12px;align-items:center">
             <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff">✉️</div>
-            <div><div style="font-weight:800">Email</div><div style="color:var(--muted)">kenyensteelworksandconstuctionservices@gmail.com</div></div>
+            <div><div style="font-weight:800">Email</div><div style="color:var(--muted)">kenyenconstructionservices@gmail.com</div></div>
           </div>
-          <div style="margin-top:12px"><a class="btn-cta" href="tel:+639094269488">Call Now</a> <a class="btn-ghost" href="mailto:kenyensteelworksandconstuctionservices@gmail.com" style="margin-left:8px">Email</a></div>
+          <div style="margin-top:12px"><a class="btn-cta" href="tel:+63848230528">Call Now</a> <a class="btn-ghost" href="mailto:kenyenconstructionservices@gmail.com" style="margin-left:8px">Email</a></div>
         </div>
 
         <aside class="card">
@@ -333,7 +311,7 @@
       </div>
     </section>
 
-    <footer style="margin-top:22px"><div style="padding:18px 0;color:var(--muted);text-align:center">© <span id="year"></span> Kenyen Steel Works & Construction Services</div></footer>
+    <footer style="margin-top:22px"><div style="padding:18px 0;color:var(--muted);text-align:center">© <span id="year"></span> KENYEN Steel Works & Contruction Services</div></footer>
   </main>
 
   <script>
