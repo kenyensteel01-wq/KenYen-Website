@@ -3,504 +3,229 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KENYEN Steel Works & Construction Services</title>
-  <meta name="description" content="KENYEN — structural steel fabrication, civil construction and turnkey delivery in Panabo City." />
+  <title>Kenyen Steel Works & Construction Services</title>
+  <meta name="description" content="Kenyen — structural steel fabrication & construction." />
+
   <style>
-    :root {
-      --bg: #f7f9fb;
-      --card: #ffffff;
-      --panel-bg: rgba(255,255,255,0.96);
-      --text: #0000FF;       /* Blue */
-      --muted: #FF0000;      /* Red */
-      --primary: #0000FF;    /* Blue */
-      --accent: #FFC700;     /* Yellow */
-      --danger: #FF0000;     /* Red */
+    /* Softer, user-friendly palette and clean layout */
+    :root{
+      --bg: #f4f6f8;                 /* soft page background */
+      --card: #ffffff;               /* card background */
+      --muted-bg: #eef3f7;           /* gentle panel background */
+      --text: #0b2b3a;               /* dark, neutral for main text (not bright blue) */
+      --primary: rgba(0,0,255,0.88); /* use original blue but softened with slight opacity */
+      --primary-100: rgba(0,0,255,0.07);
+      --accent: rgba(255,199,0,0.88);/* yellow softened */
+      --danger: rgba(255,0,0,0.72);  /* red used sparingly and softened */
+      --muted: #6b7780;             /* neutral muted color for secondary text */
       --radius: 12px;
-      --container: 1100px;
-      --base-size: 18px;
-      --line-height: 1.6;
-      --shadow: 0 10px 28px rgba(0, 0, 255, 0.12);
-      --header-h: 84px;
+      --container:1100px;
+      --shadow: 0 10px 30px rgba(10,30,60,0.06);
+      --header-h: 86px; /* initial - JS will update to exact header height */
     }
-    * {
-      box-sizing: border-box;
+
+    *{box-sizing:border-box}
+    html{ scroll-behavior:smooth; scroll-padding-top:var(--header-h); }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
     }
-    html {
-      font-size: var(--base-size);
-      scroll-behavior: smooth;
-      scroll-padding-top: var(--header-h);
-    }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: var(--line-height);
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
-    .container {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 1rem;
-      width: 100%;
-    }
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      background: rgba(255, 255, 255, 0.98);
-      border-bottom: 1px solid rgba(0, 0, 255, 0.04);
+
+    a{ color:inherit; text-decoration:none; }
+    img{ display:block; max-width:100%; height:auto; }
+
+    .container{ max-width:var(--container); margin:0 auto; padding:0 1rem; }
+
+    /* Header - pinned and subtle */
+    header{
+      position:fixed; inset:0 0 auto 0; height:var(--header-h);
+      display:flex; align-items:center; z-index:120;
+      background: rgba(255,255,255,0.92);
+      border-bottom: 1px solid rgba(11,43,70,0.04);
+      box-shadow: var(--shadow);
       backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      height: var(--header-h);
     }
-    .header-inner {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0.9rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      width: 100%;
+    .header-inner{
+      width:100%; max-width:var(--container); margin:0 auto; padding:0 .9rem;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
-    .brand {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      text-decoration: none;
-      color: var(--primary);
+
+    /* Brand */
+    .brand{ display:flex; gap:12px; align-items:center; min-width:0; }
+    .logo-wrap{
+      width:64px; height:64px; border-radius:10px; overflow:hidden; display:grid; place-items:center;
+      background:var(--primary); box-shadow: 0 8px 26px rgba(0,0,0,0.06);
+      flex-shrink:0;
     }
-    .logo-wrap {
-      width: 64px;
-      height: 64px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      background: var(--primary);
-      box-shadow: var(--shadow);
-      border: 2px solid rgba(255, 255, 255, 0.2);
+    .logo-wrap img{ width:86%; height:86%; object-fit:contain; display:block; filter: none; }
+
+    .titles{ display:flex; flex-direction:column; min-width:0; }
+    .brand-title{
+      font-weight:800; font-size:clamp(1.05rem,2.6vw,1.6rem);
+      color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
-    .logo-wrap img {
-      width: 92%;
-      height: 92%;
-      object-fit: contain;
-      display: block;
-    }
-    .titles {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-    }
-    .title {
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--primary);
-    }
-    .subtitle {
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-    nav {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    .nav-link {
-      padding: 0.45rem 0.7rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.98rem;
-      color: var(--text);
-      transition: background 0.2s ease;
-    }
-    .nav-link:focus,
-    .nav-link:hover {
-      background: #eef6fb;
-      outline: none;
-    }
-    .nav-link[aria-current="true"] {
-      background: rgba(0, 0, 255, 0.06);
-    }
-    .actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      padding: 0.55rem 0.95rem;
-      border-radius: 999px;
-      font-weight: 800;
-      border: 0;
-      box-shadow: 0 8px 20px rgba(0, 0, 255, 0.12);
-      font-size: 1rem;
-      transition: transform 0.2s ease;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-    }
-    .btn-accent {
+    .brand-sub{ font-size:0.88rem; color:var(--muted); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    /* Nav centered */
+    nav{ display:flex; gap:8px; align-items:center; justify-self:center; min-width:0; overflow:hidden; }
+    .nav-link{
+      padding:.46rem .7rem; border-radius:9px; font-weight:700; font-size:0.95rem; color:var(--text);
+      transition:background .15s ease, transform .12s ease;
       background: transparent;
-      color: var(--primary);
-      padding: 0.5rem 0.85rem;
-      border-radius: 8px;
-      border: 2px solid var(--accent);
-      font-weight: 700;
-      transition: background 0.2s ease, border-color 0.2s ease;
     }
-    .btn-accent:hover {
-      background: var(--accent);
-      color: #000;
-      border-color: var(--accent);
+    .nav-link:hover{ background:var(--primary-100); transform:translateY(-1px); }
+    .nav-link[aria-current="true"]{ background:var(--primary-100); }
+
+    /* Actions */
+    .actions{ display:flex; gap:10px; align-items:center; }
+    .btn-primary{
+      background: linear-gradient(90deg, rgba(0,0,255,0.95), rgba(0,0,255,0.86));
+      color:#fff; padding:.55rem .95rem; border-radius:999px; font-weight:900; border:0;
+      box-shadow: 0 8px 20px rgba(0,0,255,0.08);
+      transition: transform .12s ease, box-shadow .12s ease;
     }
-    .menu-toggle {
-      display: none;
-      background: transparent;
-      border: 0;
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 0.35rem;
-      border-radius: 6px;
+    .btn-primary:hover{ transform:translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,255,0.08); }
+
+    .btn-secondary{
+      background:transparent; border:1px solid rgba(0,0,0,0.06); padding:.48rem .8rem; border-radius:9px; font-weight:700;
+      color:var(--text);
     }
-    @media (max-width: 920px) {
-      nav {
-        display: none;
-      }
-      .menu-toggle {
-        display: inline-flex;
-      }
-      .titles .subtitle {
-        display: none;
-      }
-      .logo-wrap {
-        width: 56px;
-        height: 56px;
-      }
+
+    .menu-toggle{ display:none; background:transparent; border:0; font-size:1.25rem; padding:.35rem; border-radius:8px; cursor:pointer; }
+
+    @media (max-width:920px){
+      nav{ display:none; }
+      .brand-sub{ display:none; }
+      .menu-toggle{ display:inline-flex; }
+      .logo-wrap{ width:56px; height:56px; }
     }
-    main {
-      padding-top: 18px;
-      padding-bottom: 40px;
+
+    /* Main spacing - JS sets padding-top to header height exactly */
+    main{ max-width:var(--container); margin:0 auto; padding:1rem; transition: padding-top .12s ease; }
+
+    /* Layout / content */
+    .hero{ display:grid; grid-template-columns:1fr 360px; gap:18px; align-items:start; margin-top:6px; }
+    @media (max-width:980px){ .hero{ grid-template-columns:1fr; } }
+
+    .card{ background:var(--card); border-radius:12px; padding:18px; box-shadow:var(--shadow); border:1px solid rgba(11,43,70,0.04); }
+
+    .kicker{ display:inline-block; background:var(--accent); color:#111; padding:.28rem .6rem; border-radius:999px; font-weight:800; font-size:.88rem; }
+
+    h1{ margin:.6rem 0 0; font-size:1.7rem; color:var(--text); line-height:1.06; }
+    p.lead{ margin-top:12px; color:var(--muted); font-size:1rem; }
+
+    .hero-actions{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+    .stats{ margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; }
+    .stat{ background:var(--muted-bg); padding:.6rem .9rem; border-radius:9px; min-width:96px; text-align:center; border:1px solid rgba(11,43,70,0.02); }
+    .stat strong{ display:block; color:var(--text); font-weight:900; }
+
+    .contact-card{ display:flex; flex-direction:column; gap:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg, #fff, #fbfdff); border:1px solid rgba(11,43,70,0.03); box-shadow:var(--shadow); }
+
+    .section { margin-top:20px; }
+    .section-title{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
+    .section-title h2{ margin:0; color:var(--text); font-size:1.05rem; font-weight:800; }
+
+    .two-col{ display:grid; grid-template-columns:1fr 420px; gap:16px; margin-top:12px; }
+    @media (max-width:980px){ .two-col{ grid-template-columns:1fr; } }
+
+    .projects-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin-top:12px; }
+
+    .project{ background:var(--card); border-radius:10px; padding:12px; border:1px solid rgba(11,43,70,0.03); box-shadow: 0 8px 18px rgba(11,43,70,0.04); display:flex; flex-direction:column; gap:8px; }
+
+    .project .media{ height:110px; border-radius:8px; background:var(--muted-bg); display:grid; place-items:center; font-weight:800; color:var(--text); }
+
+    .contact-grid{ display:grid; grid-template-columns:1fr 320px; gap:14px; margin-top:12px; }
+    @media (max-width:980px){ .contact-grid{ grid-template-columns:1fr; } }
+
+    footer{ margin-top:26px; padding:14px 0; text-align:center; color:var(--muted); font-size:.95rem; }
+
+    /* Mobile drawer (full-screen overlay on small screens, small card on desktop) */
+    .drawer-backdrop{ position:fixed; inset:0; background:rgba(8,12,20,0.36); z-index:130; display:none; align-items:flex-start; justify-content:flex-end; }
+    .drawer-backdrop.open{ display:flex; }
+    .drawer{
+      background:var(--card);
+      width:100%;
+      max-width:380px;
+      margin-top:calc(var(--header-h) + 8px);
+      margin-right:16px;
+      border-radius:12px;
+      box-shadow: 0 18px 36px rgba(11,43,70,0.14);
+      transform:translateY(-6px) scale(.99);
+      transition:transform .18s ease, opacity .18s ease;
+      opacity:0; pointer-events:none;
+      border:1px solid rgba(11,43,70,0.04);
+      overflow:hidden;
     }
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 20px;
-      align-items: start;
+    .drawer.open{ transform:translateY(0) scale(1); opacity:1; pointer-events:auto; }
+    @media (max-width:920px){
+      .drawer{ max-width:100%; border-radius:0; margin:0; margin-top:var(--header-h); }
     }
-    @media (max-width: 980px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-    }
-    .card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0, 0, 255, 0.04);
-    }
-    .hero-card {
-      padding: 28px;
-    }
-    .kicker {
-      display: inline-block;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #072233;
-      font-weight: 800;
-      font-size: 0.9rem;
-    }
-    h1 {
-      margin: 0.6rem 0 0;
-      font-size: 1.9rem;
-      line-height: 1.06;
-      color: var(--text);
-      font-weight: 700;
-    }
-    p.lead {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-    .hero-actions {
-      margin-top: 16px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .stats {
-      margin-top: 18px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .stat {
-      background: #f8fbff;
-      padding: 0.6rem 1rem;
-      border-radius: 10px;
-      min-width: 110px;
-      text-align: center;
-      border: 1px solid #eaf4fb;
-    }
-    .stat strong {
-      display: block;
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--text);
-    }
-    .contact-card {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 18px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, #fff, #fbfdff);
-      border: 1px solid rgba(0, 0, 255, 0.03);
-      box-shadow: var(--shadow);
-    }
-    .contact-card h4 {
-      margin: 0;
-      color: var(--primary);
-      font-weight: 700;
-    }
-    .contact-row {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .contact-row .info {
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-    section {
-      margin-top: 22px;
-    }
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-    }
-    .section-title h2 {
-      margin: 0;
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 1.15rem;
-    }
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 18px;
-      align-items: start;
-      margin-top: 12px;
-    }
-    @media (max-width: 980px) {
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-    }
-    .glass {
-      background: var(--card);
-      padding: 18px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0, 0, 255, 0.04);
-    }
-    .ceo {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 14px;
-      align-items: center;
-      background: var(--card);
-      padding: 14px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0, 0, 255, 0.04);
-      margin-top: 12px;
-    }
-    @media (max-width: 720px) {
-      .ceo {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .ceo .photo {
-        margin: 0 auto;
-      }
-    }
-    .photo {
-      width: 160px;
-      height: 160px;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 6px solid #fff;
-      box-shadow: 0 12px 30px rgba(0, 0, 255, 0.06);
-      background: #eef6fb;
-      display: grid;
-      place-items: center;
-    }
-    .photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .ceo .name {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 1.05rem;
-      margin: 0;
-    }
-    .ceo .role {
-      margin-top: 6px;
-      color: var(--muted);
-      font-weight: 700;
-    }
-    .quote {
-      margin-top: 10px;
-      padding: 10px;
-      border-left: 4px solid var(--primary);
-      background: #fbfdff;
-      border-radius: 6px;
-      color: var(--text);
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-    .project {
-      background: var(--card);
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(0, 0, 255, 0.04);
-      box-shadow: 0 8px 20px rgba(0, 0, 255, 0.04);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .project .media {
-      height: 110px;
-      border-radius: 8px;
-      background: #fff7e6;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      color: var(--primary);
-      user-select: none;
-    }
-    .project .meta {
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-    .badge {
-      background: var(--primary);
-      color: #fff;
-      padding: 0.28rem 0.6rem;
-      border-radius: 8px;
-      font-weight: 700;
-      user-select: none;
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 14px;
-      margin-top: 12px;
-    }
-    @media (max-width: 980px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    .contact-info {
-      background: var(--card);
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(0, 0, 255, 0.04);
-      box-shadow: 0 8px 20px rgba(0, 0, 255, 0.04);
-    }
-    footer {
-      margin-top: 28px;
-      padding: 18px 0;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-    :focus {
-      outline: 3px solid rgba(0, 0, 255, 0.12);
-      outline-offset: 3px;
-    }
+    .drawer .inner{ padding:14px; display:flex; flex-direction:column; gap:8px; }
+
+    /* Focus visible for keyboard users */
+    :focus{ outline:3px solid rgba(0,0,255,0.12); outline-offset:3px; }
   </style>
 </head>
 <body>
-  <header role="banner" aria-label="Main header">
+  <header id="siteHeader" role="banner" aria-label="Main header">
     <div class="header-inner container">
-      <a class="brand" href="#home" title="KENYEN home" aria-label="Go to home">
-        <div class="logo-wrap" id="logoWrap" aria-hidden="false">
-          <img id="brandLogo" src="https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Pics/LOGO.jpg" alt="KENYEN logo" />
+      <a class="brand" href="#home" aria-label="Go to home">
+        <div class="logo-wrap" id="logoWrap">
+          <img id="brandLogo" src="https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Pics/LOGO.jpg" alt="KENYEN logo">
         </div>
+
         <div class="titles">
-          <div class="title">KENYEN Steel Works &amp; Construction</div>
-          <div class="subtitle">Panabo City — Steel &amp; Civil Works</div>
+          <div class="brand-title">Kenyen Steel Works & Construction</div>
+          <div class="brand-sub">Steel Fabrication • Civil Construction</div>
         </div>
       </a>
 
       <nav role="navigation" aria-label="Primary navigation">
         <a class="nav-link" href="#home" data-target="home" aria-current="true">Home</a>
         <a class="nav-link" href="#about" data-target="about">About</a>
-        <a class="nav-link" href="#ceo" data-target="ceo">CEO</a>
         <a class="nav-link" href="#projects" data-target="projects">Projects</a>
         <a class="nav-link" href="#contact" data-target="contact">Contact</a>
       </nav>
 
       <div class="actions">
         <a class="btn-primary" href="#contact">Request Quote</a>
-        <button class="menu-toggle" id="menuToggle" aria-controls="mobileNav" aria-expanded="false" aria-label="Open menu">☰</button>
-      </div>
-    </div>
-
-    <!-- Mobile nav container (hidden initially) -->
-    <div id="mobileNav" style="display:none; border-top:1px solid rgba(0,0,255,0.03); background:#fff;">
-      <div class="container" style="padding:10px 0;">
-        <nav role="navigation" aria-label="Mobile navigation" style="display:flex;flex-direction:column;gap:8px;">
-          <a href="#home" data-target="home" onclick="closeMobile()">Home</a>
-          <a href="#about" data-target="about" onclick="closeMobile()">About</a>
-          <a href="#ceo" data-target="ceo" onclick="closeMobile()">CEO</a>
-          <a href="#projects" data-target="projects" onclick="closeMobile()">Projects</a>
-          <a href="#contact" data-target="contact" onclick="closeMobile()">Contact</a>
-        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
       </div>
     </div>
   </header>
 
+  <!-- Drawer/backdrop used for mobile & small desktop dropdown -->
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true">
+    <div class="drawer" id="drawer" role="dialog" aria-modal="false" aria-label="Menu">
+      <div class="inner">
+        <a class="nav-link" href="#home" data-target="home">Home</a>
+        <a class="nav-link" href="#about" data-target="about">About</a>
+        <a class="nav-link" href="#projects" data-target="projects">Projects</a>
+        <a class="nav-link" href="#contact" data-target="contact">Contact</a>
+        <div style="margin-top:8px; display:flex; gap:8px;">
+          <a class="btn-primary" href="#contact">Get Quote</a>
+          <a class="btn-secondary" href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <main id="main" class="container" role="main">
     <!-- HERO -->
     <section id="home" class="hero" aria-labelledby="heroTitle">
-      <div class="card hero-card" aria-labelledby="heroTitle">
+      <div class="card">
         <div class="kicker" aria-hidden="true">Trusted • Local • Certified</div>
         <h1 id="heroTitle">Durable steelwork and reliable construction — delivered with care</h1>
-        <p class="lead">We provide structural steel fabrication, civil construction and turnkey project delivery across Panabo City and neighboring provinces. Safety, quality and clear communication are priorities for every project.</p>
+        <p class="lead">We provide structural steel fabrication, civil construction and turnkey project delivery. Safety, quality and clear communication are priorities for every job.</p>
 
         <div class="hero-actions" role="group" aria-label="Primary actions">
           <a class="btn-primary" href="#contact">Get a Quote</a>
-          <a class="btn-accent" href="#projects">View Projects</a>
+          <a class="btn-secondary" href="#projects">View Projects</a>
         </div>
 
         <div class="stats" aria-hidden="true">
@@ -511,336 +236,276 @@
       </div>
 
       <aside class="contact-card" aria-labelledby="quickContact">
-        <div>
-          <h4 id="quickContact">Quick contact</h4>
-          <p>For quotes, site visits, or technical questions — reach out and we'll respond promptly.</p>
+        <h4 id="quickContact">Quick contact</h4>
+        <p style="margin:0;color:var(--muted)">For quotes, site visits, or technical questions — reach out and we'll respond promptly.</p>
+
+        <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-weight:800">Phone</div>
+            <div style="color:var(--muted)"><a href="tel:+63848230528">(084) 823 0528</a></div>
+          </div>
+          <div style="font-weight:700;color:var(--primary)">📞</div>
         </div>
 
-        <div>
-          <div class="contact-row">
-            <div>
-              <div style="font-weight:700">Phone</div>
-              <div class="info"><a href="tel:+63848230528">(084) 823 0528</a></div>
-            </div>
-            <div style="font-weight:700; color:var(--primary)">📞</div>
+        <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-weight:800">Email</div>
+            <div style="color:var(--muted)"><a href="mailto:kenyenconstructionservices@gmail.com">kenyenconstructionservices@gmail.com</a></div>
           </div>
-
-          <div style="height:10px"></div>
-
-          <div class="contact-row">
-            <div>
-              <div style="font-weight:700">Email</div>
-              <div class="info"><a href="mailto:kenyenconstructionservices@gmail.com">kenyenconstructionservices@gmail.com</a></div>
-            </div>
-            <div style="font-weight:700; color:var(--danger)">✉️</div>
-          </div>
-
-          <div style="margin-top:12px;">
-            <a class="btn-primary" href="tel:+63848230528">Call Now</a>
-            <a class="btn-accent" href="mailto:kenyenconstructionservices@gmail.com" style="margin-left:8px">Email</a>
-          </div>
+          <div style="font-weight:700;color:var(--danger)">✉️</div>
         </div>
 
-        <div style="margin-top:auto; color:var(--muted); font-size:0.98rem;">
+        <div style="display:flex; gap:8px; margin-top:6px;">
+          <a class="btn-primary" href="tel:+63848230528">Call Now</a>
+          <a class="btn-secondary" href="mailto:kenyenconstructionservices@gmail.com">Email</a>
+        </div>
+
+        <div style="margin-top:auto; color:var(--muted); font-size:.95rem">
           Office: Purok 9, Phase 3, Urban Salvacion — Mon–Sat 8:00–17:00
         </div>
       </aside>
     </section>
 
-    <!-- ABOUT & CEO -->
-    <section id="about" aria-labelledby="aboutHeading">
+    <!-- ABOUT -->
+    <section id="about" class="section" aria-labelledby="aboutHeading">
       <div class="section-title">
-        <h2 id="aboutHeading">About KenYen</h2>
-        <div class="muted">Family-owned • Local expertise</div>
+        <h2 id="aboutHeading">About Kenyen</h2>
+        <div style="color:var(--muted);font-weight:700">Family-owned • Local expertise</div>
       </div>
 
       <div class="two-col">
-        <div class="glass" aria-labelledby="whoWeAre">
-          <h3 id="whoWeAre">Who we are</h3>
-          <p>Founded in 2011 by Erwin C. Laurel, KenYen Steel Works & Construction Services delivers structural steel fabrication, welding, engineering detailing and full site execution. We prioritize compliance, safety and client satisfaction for residential, commercial and public works.</p>
+        <div class="card">
+          <h3>Who we are</h3>
+          <p style="color:var(--muted)">Founded by Erwin C. Laurel, Kenyen Steel Works & Construction Services delivers structural steel fabrication, welding, engineering detailing and site erection. We prioritize compliance, safety and client satisfaction.</p>
 
-          <h4 style="color:var(--primary); margin-top:12px;">Mission</h4>
-          <p>Provide safe, high-quality, affordable steel fabrication and construction through stewardship, innovation and environmental responsibility.</p>
+          <h4 style="color:var(--text)">Mission</h4>
+          <p style="color:var(--muted)">Provide safe, high-quality, affordable steel fabrication and construction through skilled people and sound processes.</p>
 
-          <h4 style="color:var(--primary); margin-top:10px;">Vision</h4>
-          <p>To be the leading provider of sustainable construction and steel solutions in Panabo City and beyond.</p>
+          <h4 style="color:var(--text)">Vision</h4>
+          <p style="color:var(--muted)">To be a trusted partner for sustainable construction and steel solutions in our region.</p>
         </div>
 
         <aside>
-          <div id="ceo" class="ceo" aria-labelledby="ceoName">
-            <div class="photo" aria-hidden="false">
-              <img src="https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/440239264_1445261156088996_7180069057551357572_n.jpg"
-                   alt="Erwin C. Laurel — Founder and CEO" />
-            </div>
-
-            <div>
-              <div id="ceoName" class="name">Erwin C. Laurel</div>
-              <div class="role">Founder &amp; Chief Executive Officer</div>
-
-              <p class="quote">"We build with integrity — delivering safe, efficient and durable solutions while nurturing lasting client relationships."</p>
-
-              <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
-                <div style="background:#fff8e6; padding:8px; border-radius:8px; border:1px solid rgba(0, 0, 255, 0.04); text-align:center; min-width:86px;">
-                  <div style="font-size:0.88rem; color:var(--muted)">Experience</div>
-                  <div style="font-weight:800">15+ yrs</div>
-                </div>
-                <div style="background:#eef8ff; padding:8px; border-radius:8px; border:1px solid rgba(0, 0, 255, 0.04); text-align:center; min-width:86px;">
-                  <div style="font-size:0.88rem; color:var(--muted)">Projects</div>
-                  <div style="font-weight:800">120+</div>
-                </div>
-                <div style="background:#fffef0; padding:8px; border-radius:8px; border:1px solid rgba(0, 0, 255, 0.04); text-align:center; min-width:86px;">
-                  <div style="font-size:0.88rem; color:var(--muted)">Specialty</div>
-                  <div style="font-weight:800">Steel &amp; Civils</div>
-                </div>
+          <div class="card" id="ceo" aria-labelledby="ceoName">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <div style="width:120px;height:120px;border-radius:10px;overflow:hidden;background:#eef6fb;display:grid;place-items:center;flex-shrink:0">
+                <img src="https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/440239264_1445261156088996_7180069057551357572_n.jpg" alt="Erwin C. Laurel" style="width:100%;height:100%;object-fit:cover">
               </div>
-
-              <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
-                <a class="btn-primary" href="mailto:kenyenconstructionservices@gmail.com">Email Erwin</a>
-                <a class="btn-accent" href="#contact">Contact Office</a>
+              <div>
+                <div id="ceoName" style="font-weight:800;color:var(--text)">Erwin C. Laurel</div>
+                <div style="color:var(--muted);font-weight:700;margin-top:6px">Founder & CEO</div>
+                <p class="quote" style="margin-top:10px;padding-left:8px;border-left:3px solid var(--primary);background:#fbfdff;border-radius:6px">"We build with integrity — delivering safe, efficient and durable solutions."</p>
               </div>
             </div>
-          </div>
 
-          <div class="glass" style="margin-top:12px;">
-            <h4 style="margin:0 0 8px 0; color:var(--primary);">Our History</h4>
-            <p style="margin:0; white-space:pre-line;">KenYen Steel Works & Construction Services was founded in 2011 by Erwin C. Laurel. Born from a passion for architecture and family values, KenYen has completed many projects across Panabo City and neighboring provinces while following specifications, regulations and industry best practices.</p>
+            <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap">
+              <a class="btn-primary" href="mailto:kenyenconstructionservices@gmail.com">Email Erwin</a>
+              <a class="btn-secondary" href="#contact">Contact Office</a>
+            </div>
           </div>
         </aside>
       </div>
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" aria-labelledby="projectsHeading">
+    <section id="projects" class="section" aria-labelledby="projectsHeading">
       <div class="section-title">
         <h2 id="projectsHeading">Projects</h2>
-        <div class="muted">Completed — notable recent works</div>
+        <div style="color:var(--muted);font-weight:700">Recent notable works</div>
       </div>
 
       <div class="projects-grid" role="list">
-        <article class="project" role="listitem" aria-labelledby="proj1">
-          <div class="media" aria-hidden="true">PANABO FIRE STATION</div>
-          <div>
-            <div id="proj1" style="font-weight:800;color:var(--text)">Repair &amp; Improvement of Panabo City Fire Station</div>
-            <div class="meta">
-              <div><strong>Location:</strong> San Pedro, Panabo City, Davao del Norte</div>
-              <div><strong>Owner:</strong> BFP XI - Panabo City Fire Station</div>
-              <div><strong>Completed:</strong> August 2025</div>
-            </div>
-          </div>
-          <div style="margin-top:auto; display:flex; justify-content:space-between; align-items:center;">
-            <div class="muted">Public Safety</div>
-            <div class="badge">Completed</div>
-          </div>
+        <article class="project" role="listitem">
+          <div class="media">PANABO FIRE STATION</div>
+          <div style="font-weight:800;color:var(--text)">Repair & Improvement of Panabo City Fire Station</div>
+          <div class="meta" style="color:var(--muted)">San Pedro — Completed Aug 2025</div>
         </article>
 
-        <article class="project" role="listitem" aria-labelledby="proj2">
-          <div class="media" aria-hidden="true">DELA CRUZ HOTEL</div>
-          <div>
-            <div id="proj2" style="font-weight:800;color:var(--text)">Dela Cruz Hotel — Renovation &amp; Improvement</div>
-            <div class="meta">
-              <div><strong>Location:</strong> San Pedro, Panabo City, Davao del Norte</div>
-              <div><strong>Owner:</strong> Luz Delacruz</div>
-              <div><strong>Completed:</strong> September 2025</div>
-            </div>
-          </div>
-          <div style="margin-top:auto; display:flex; justify-content:space-between; align-items:center;">
-            <div class="muted">Commercial</div>
-            <div class="badge">Completed</div>
-          </div>
+        <article class="project" role="listitem">
+          <div class="media">DELA CRUZ HOTEL</div>
+          <div style="font-weight:800;color:var(--text)">Dela Cruz Hotel — Renovation</div>
+          <div class="meta" style="color:var(--muted)">San Pedro — Completed Sep 2025</div>
         </article>
 
-        <article class="project" role="listitem" aria-labelledby="proj3">
-          <div class="media" aria-hidden="true">FENCE &amp; GATE</div>
-          <div>
-            <div id="proj3" style="font-weight:800;color:var(--text)">Demolition &amp; Construction of Concrete Fence + Steel Gate</div>
-            <div class="meta">
-              <div><strong>Location:</strong> San Andres, Tarlac City / Manila</div>
-              <div><strong>Owner:</strong> Ryan Gil S. Medina</div>
-              <div><strong>Completed:</strong> June 2025</div>
-            </div>
-          </div>
-          <div style="margin-top:auto; display:flex; justify-content:space-between; align-items:center;">
-            <div class="muted">Residential</div>
-            <div class="badge">Completed</div>
-          </div>
+        <article class="project" role="listitem">
+          <div class="media">FENCE & GATE</div>
+          <div style="font-weight:800;color:var(--text)">Concrete Fence + Steel Gate</div>
+          <div class="meta" style="color:var(--muted)">San Andres — Completed Jun 2025</div>
         </article>
 
-        <article class="project" role="listitem" aria-labelledby="proj4">
-          <div class="media" aria-hidden="true">ROAD PAVEMENT</div>
-          <div>
-            <div id="proj4" style="font-weight:800;color:var(--text)">Concreting of Road Pavement</div>
-            <div class="meta">
-              <div><strong>Location:</strong> San Andres, Tarlac City / Manila</div>
-              <div><strong>Owner:</strong> Ryan Gil S. Medina</div>
-              <div><strong>Completed:</strong> August 2025</div>
-            </div>
-          </div>
-          <div style="margin-top:auto; display:flex; justify-content:space-between; align-items:center;">
-            <div class="muted">Infrastructure</div>
-            <div class="badge">Completed</div>
-          </div>
+        <article class="project" role="listitem">
+          <div class="media">ROAD PAVEMENT</div>
+          <div style="font-weight:800;color:var(--text)">Concreting of Road Pavement</div>
+          <div class="meta" style="color:var(--muted)">San Andres — Completed Aug 2025</div>
         </article>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" aria-labelledby="contactHeading">
+    <section id="contact" class="section" aria-labelledby="contactHeading">
       <div class="section-title">
         <h2 id="contactHeading">Contact</h2>
-        <div class="muted">We're happy to help — all ages and backgrounds welcome</div>
+        <div style="color:var(--muted);font-weight:700">We're happy to help</div>
       </div>
 
       <div class="contact-grid">
-        <div class="contact-info">
-          <p>For project inquiries, technical questions or quotations, call or email. We respond promptly and can schedule site visits and measurements.</p>
-
-          <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;">
-            <div style="min-width:180px;">
+        <div class="card">
+          <p style="color:var(--muted)">For inquiries, technical questions or quotations, call or email. We respond promptly and can schedule site visits.</p>
+          <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+            <div>
               <div style="font-weight:800">Phone</div>
-              <div class="muted"><a href="tel:+63848230528">(084) 823 0528</a></div>
+              <div style="color:var(--muted)"><a href="tel:+63848230528">(084) 823 0528</a></div>
             </div>
-
-            <div style="min-width:220px;">
+            <div>
               <div style="font-weight:800">Email</div>
-              <div class="muted"><a href="mailto:kenyenconstructionservices@gmail.com">kenyenconstructionservices@gmail.com</a></div>
+              <div style="color:var(--muted)"><a href="mailto:kenyenconstructionservices@gmail.com">kenyenconstructionservices@gmail.com</a></div>
             </div>
           </div>
 
-          <div style="margin-top:14px;">
+          <div style="margin-top:14px">
             <a class="btn-primary" href="tel:+63848230528">Call Now</a>
-            <a class="btn-accent" href="mailto:kenyenconstructionservices@gmail.com" style="margin-left:8px">Email</a>
+            <a class="btn-secondary" href="mailto:kenyenconstructionservices@gmail.com" style="margin-left:8px">Email</a>
           </div>
         </div>
 
-        <aside class="contact-info" aria-label="office details">
-          <div style="font-weight:800; color: var(--primary);">Office</div>
-          <div class="muted">Purok 9, Phase 3, Urban Salvacion — Panabo City</div>
-
-          <div style="height:12px"></div>
-
-          <div style="font-weight:800; color: var(--primary);">Office Hours</div>
-          <div class="muted">Mon–Sat: 8:00 AM – 5:00 PM</div>
-
-          <div style="height:12px"></div>
-
-          <div style="font-weight:800; color: var(--primary);">Company</div>
-          <div class="muted">KENYEN Steel Works &amp; Construction Services</div>
+        <aside class="card" aria-label="office details">
+          <div style="font-weight:800;color:var(--text)">Office</div>
+          <div style="color:var(--muted)">Purok 9, Phase 3, Urban Salvacion — Panabo City</div>
+          <div style="height:10px"></div>
+          <div style="font-weight:800;color:var(--text)">Office Hours</div>
+          <div style="color:var(--muted)">Mon–Sat: 8:00 AM – 5:00 PM</div>
+          <div style="height:10px"></div>
+          <div style="font-weight:800;color:var(--text)">Company</div>
+          <div style="color:var(--muted)">Kenyen Steel Works & Construction Services</div>
         </aside>
       </div>
     </section>
 
     <footer>
-      <div style="padding-top:14px; padding-bottom:6px; color: var(--muted); text-align: center;">
-        © <span id="year"></span> KENYEN Steel Works &amp; Construction Services — All rights reserved.
-      </div>
+      <div style="padding:12px 0; color:var(--muted)">© <span id="year"></span> Kenyen Steel Works & Construction Services — All rights reserved.</div>
     </footer>
   </main>
 
   <script>
-    (function () {
+    (function(){
+      const header = document.getElementById('siteHeader');
+      const main = document.getElementById('main');
       const menuToggle = document.getElementById('menuToggle');
-      const mobileNav = document.getElementById('mobileNav');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
+      const drawer = document.getElementById('drawer');
       const navLinks = document.querySelectorAll('[data-target]');
-      const header = document.querySelector('header');
       const yearEl = document.getElementById('year');
       const brandLogo = document.getElementById('brandLogo');
       const logoWrap = document.getElementById('logoWrap');
 
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      // Mobile nav helpers
-      window.closeMobile = function () {
-        if (!mobileNav) return;
-        mobileNav.style.display = 'none';
-        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
-      };
-
-      if (menuToggle) {
-        menuToggle.addEventListener('click', function () {
-          const open = mobileNav.style.display !== 'block';
-          mobileNav.style.display = open ? 'block' : 'none';
-          menuToggle.setAttribute('aria-expanded', String(open));
-        });
+      // update CSS variable and main padding so header does NOT overlap content
+      function syncHeaderHeight(){
+        const h = header.offsetHeight;
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+        if (main) main.style.paddingTop = (h + 6) + 'px'; // small offset for breathing room
+        // ensure drawer aligns under header on mobile
+        if (drawerBackdrop) drawerBackdrop.style.paddingTop = (h + 8) + 'px';
       }
 
-      // Smooth scroll with header offset
-      function smoothTo(id) {
+      // Smooth scroll that accounts for header height
+      function smoothTo(id){
         const el = document.getElementById(id);
         if (!el) return;
-        closeMobile();
-        const offset = header ? header.offsetHeight : 0;
-        const top = window.scrollY + el.getBoundingClientRect().top - offset - 12;
+        closeDrawer();
+        const top = window.scrollY + el.getBoundingClientRect().top - (header ? header.offsetHeight : 0) - 8;
         window.scrollTo({ top, behavior: 'smooth' });
       }
 
+      // Highlight nav as user scrolls
+      function highlightNav(){
+        const offset = (header ? header.offsetHeight : 0) + 22;
+        let current = 'home';
+        document.querySelectorAll('main section[id]').forEach(sec=>{
+          const r = sec.getBoundingClientRect();
+          if (r.top - offset <= 0) current = sec.id;
+        });
+        document.querySelectorAll('.nav-link').forEach(link=>{
+          if (link.getAttribute('data-target') === current) link.setAttribute('aria-current','true');
+          else link.removeAttribute('aria-current');
+        });
+      }
+
+      // Drawer open/close
+      function openDrawer(){
+        if (!drawerBackdrop || !drawer) return;
+        drawerBackdrop.classList.add('open');
+        drawer.classList.add('open');
+        drawerBackdrop.setAttribute('aria-hidden','false');
+        drawer.setAttribute('aria-modal','true');
+        menuToggle.setAttribute('aria-expanded','true');
+        // disable body scroll on small screens
+        if (window.matchMedia('(max-width:920px)').matches) document.body.style.overflow = 'hidden';
+      }
+      function closeDrawer(){
+        if (!drawerBackdrop || !drawer) return;
+        drawerBackdrop.classList.remove('open');
+        drawer.classList.remove('open');
+        drawerBackdrop.setAttribute('aria-hidden','true');
+        drawer.setAttribute('aria-modal','false');
+        menuToggle.setAttribute('aria-expanded','false');
+        document.body.style.overflow = '';
+      }
+      function toggleDrawer(){ if (drawer.classList.contains('open')) closeDrawer(); else openDrawer(); }
+
+      // Wire events
+      window.addEventListener('load', () => { syncHeaderHeight(); highlightNav(); });
+      window.addEventListener('resize', () => { syncHeaderHeight(); highlightNav(); });
+      window.addEventListener('scroll', () => { highlightNav(); });
+
       navLinks.forEach(a => {
-        a.addEventListener('click', function (e) {
+        a.addEventListener('click', function(e){
           e.preventDefault();
           const t = this.getAttribute('data-target');
           if (t) smoothTo(t);
         });
       });
 
-      // Nav highlight while scrolling
-      function highlight() {
-        const offset = (header ? header.offsetHeight : 0) + 20;
-        let current = 'home';
-        document.querySelectorAll('main section[id]').forEach(sec => {
-          const rect = sec.getBoundingClientRect();
-          if (rect.top - offset <= 0) current = sec.id;
-        });
-        document.querySelectorAll('.nav-link').forEach(link => {
-          const target = link.getAttribute('data-target');
-          if (target === current) link.setAttribute('aria-current', 'true');
-          else link.removeAttribute('aria-current');
+      if (menuToggle){
+        menuToggle.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          toggleDrawer();
+          syncHeaderHeight();
         });
       }
 
-      window.addEventListener('scroll', highlight, { passive: true });
-      window.addEventListener('load', highlight);
-      window.addEventListener('resize', highlight);
+      // Clicking backdrop closes drawer
+      if (drawerBackdrop){
+        drawerBackdrop.addEventListener('click', (e)=>{
+          if (e.target === drawerBackdrop) closeDrawer();
+        });
+      }
 
-      // Logo fallback if image fails
-      function setLogoFallback() {
+      // close drawer when resize from mobile to desktop
+      window.matchMedia('(min-width:921px)').addEventListener('change', (e)=>{ if (e.matches) closeDrawer(); });
+
+      // keyboard: escape closes drawer
+      window.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeDrawer(); });
+
+      // Logo fallback
+      (function logoFallback(){
         if (!brandLogo || !logoWrap) return;
-        function showText() {
-          logoWrap.innerHTML = '<div style="color:#0000FF;font-weight:800;font-size:14px;letter-spacing:0.6px;">KENYEN</div>';
-          logoWrap.style.background = 'var(--primary)';
+        function fallback(){
+          logoWrap.innerHTML = '<div style="font-weight:800;color:var(--text);font-size:13px;letter-spacing:.6px;">KENYEN</div>';
+          logoWrap.style.background = 'linear-gradient(180deg, rgba(0,0,255,0.06), rgba(255,199,0,0.04))';
         }
-        if (brandLogo.complete) {
-          if (brandLogo.naturalWidth === 0) showText();
+        if (brandLogo.complete){
+          if (brandLogo.naturalWidth === 0) fallback();
         } else {
-          brandLogo.addEventListener('error', showText, { once: true });
-          setTimeout(() => {
-            if (brandLogo.naturalWidth === 0) showText();
-          }, 3000);
-        }
-      }
-      setLogoFallback();
-
-      // CEO image fallback to initials if broken
-      (function ceoFallback() {
-        const ceoImg = document.querySelector('.ceo .photo img');
-        if (!ceoImg) return;
-        function showPlaceholder() {
-          const photo = document.querySelector('.ceo .photo');
-          if (!photo) return;
-          photo.innerHTML = '<div style="width:100%;height:100%;display:grid;place-items:center;background:#eef6ff;color:var(--primary);font-weight:800;font-size:28px;border-radius:8px;">EC</div>';
-        }
-        if (ceoImg.complete) {
-          if (ceoImg.naturalWidth === 0) showPlaceholder();
-        } else {
-          ceoImg.addEventListener('error', showPlaceholder, { once: true });
-          setTimeout(() => {
-            if (ceoImg.naturalWidth === 0) showPlaceholder();
-          }, 3000);
+          brandLogo.addEventListener('error', fallback, { once:true });
+          setTimeout(()=>{ if (brandLogo.naturalWidth === 0) fallback(); }, 2500);
         }
       })();
 
-      // Accessibility: show focus outlines for keyboard users
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Tab') document.body.classList.add('user-is-tabbing');
-      });
+      // initial sync (after fonts/images may settle)
+      setTimeout(syncHeaderHeight, 120);
+      setTimeout(syncHeaderHeight, 700);
     })();
   </script>
 </body>
