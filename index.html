@@ -7,102 +7,137 @@
   <meta name="description" content="Kenyen — structural steel fabrication & construction." />
 
   <!-- Poppins font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* Softer, user-friendly palette and clean layout */
     :root{
-      --bg: #f4f6f8;                 /* soft page background */
-      --card: #ffffff;               /* card background */
-      --muted-bg: #eef3f7;           /* gentle panel background */
-      --text: #0b2b3a;               /* dark, neutral for main text (not bright blue) */
-      --primary: rgba(0,0,255,0.88); /* blue softened with slight opacity */
+      --bg-color: #f4f6f8;
+      --card: #ffffff;
+      --muted-bg: #eef3f7;
+      --text: #0b2b3a;
+      --primary: rgba(0,0,255,0.88);
       --primary-100: rgba(0,0,255,0.07);
-      --accent: rgba(255,199,0,0.88);/* yellow softened */
-      --danger: rgba(255,0,0,0.72);  /* red used sparingly and softened */
-      --muted: #6b7780;              /* neutral muted color for secondary text */
+      --accent: rgba(255,199,0,0.88);
+      --danger: rgba(255,0,0,0.72);
+      --muted: #6b7780;
       --radius: 12px;
-      --container:1100px;
+      --container: 1100px;
       --shadow: 0 10px 30px rgba(10,30,60,0.06);
-      --header-h: 86px; /* initial - JS will update to exact header height */
+      --header-h: 86px; /* updated by JS */
+      --bg-image: url('https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/495571998_1198828945588188_6177126918907221986_n.jpg');
+      --logo-wm: url('https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Pics/LOGO.jpg');
     }
 
-    *{box-sizing:border-box}
-    html{ scroll-behavior:smooth; scroll-padding-top:var(--header-h); }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
     body{
       margin:0;
-      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      background:var(--bg);
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
-      font-weight:400;
-      font-size:16px;
+      -webkit-font-smoothing:antialiased;
+      background-color: var(--bg-color);
+      /* page background image with subtle overlay to reduce brightness */
+      background-image:
+        linear-gradient(rgba(10,18,26,0.20), rgba(10,18,26,0.20)),
+        var(--bg-image);
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
     }
 
-    a{ color:inherit; text-decoration:none; }
-    img{ display:block; max-width:100%; height:auto; }
+    /* subtle logo watermark in bottom-right */
+    body::after{
+      content: "";
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 160px;
+      height: 160px;
+      background-image: var(--logo-wm);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0.06;             /* very subtle */
+      filter: grayscale(1) blur(0.2px);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-    .container{ max-width:var(--container); margin:0 auto; padding:0 1rem; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
 
-    /* Header - pinned and subtle */
+    .container{ max-width: var(--container); margin: 0 auto; padding: 0 1rem; }
+
+    /* Header (pinned) */
     header{
-      position:fixed; inset:0 0 auto 0; height:var(--header-h);
-      display:flex; align-items:center; z-index:120;
-      background: rgba(255,255,255,0.92);
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: var(--header-h);
+      display:flex;
+      align-items:center;
+      z-index: 120;
+      background: rgba(255,255,255,0.94); /* slightly translucent so bg shows faintly */
       border-bottom: 1px solid rgba(11,43,70,0.04);
       box-shadow: var(--shadow);
       backdrop-filter: blur(6px);
     }
     .header-inner{
-      width:100%; max-width:var(--container); margin:0 auto; padding:0 .9rem;
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      width:100%;
+      max-width:var(--container);
+      margin:0 auto;
+      padding:0 .9rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
     }
 
-    /* Brand */
-    .brand{ display:flex; gap:12px; align-items:center; min-width:0; }
+    .brand{ display:flex; gap:12px; align-items:center; min-width:0; z-index: 125; }
     .logo-wrap{
       width:64px; height:64px; border-radius:10px; overflow:hidden; display:grid; place-items:center;
-      background:var(--primary); box-shadow: 0 8px 26px rgba(0,0,0,0.06);
+      background: linear-gradient(180deg, rgba(0,0,255,0.12), rgba(255,199,0,0.04));
+      box-shadow: 0 8px 26px rgba(0,0,0,0.06);
       flex-shrink:0;
     }
-    .logo-wrap img{ width:86%; height:86%; object-fit:contain; display:block; filter: none; }
+    .logo-wrap img{ width:86%; height:86%; object-fit:contain; display:block; }
 
     .titles{ display:flex; flex-direction:column; min-width:0; }
-    .brand-title{
-      font-weight:700; font-size:clamp(1.05rem,2.6vw,1.6rem);
-      color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
+    .brand-title{ font-weight:700; font-size:clamp(1.05rem,2.6vw,1.6rem); color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .brand-sub{ font-size:0.88rem; color:var(--muted); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-    /* Nav centered */
-    nav{ display:flex; gap:8px; align-items:center; justify-self:center; min-width:0; overflow:hidden; }
+    nav{ display:flex; gap:8px; align-items:center; justify-self:center; min-width:0; overflow:hidden; z-index:125; }
     .nav-link{
-      padding:.46rem .7rem; border-radius:9px; font-weight:600; font-size:0.95rem; color:var(--text);
-      transition:background .15s ease, transform .12s ease;
+      padding:.46rem .7rem;
+      border-radius:9px;
+      font-weight:600;
+      font-size:0.95rem;
+      color:var(--text);
+      transition: background .15s ease, transform .12s ease;
       background: transparent;
     }
-    .nav-link:hover{ background:var(--primary-100); transform:translateY(-1px); }
-    .nav-link[aria-current="true"]{ background:var(--primary-100); }
+    .nav-link:hover{ background: var(--primary-100); transform: translateY(-1px); }
+    .nav-link[aria-current="true"]{ background: var(--primary-100); }
 
-    /* Actions */
-    .actions{ display:flex; gap:10px; align-items:center; }
+    .actions{ display:flex; gap:10px; align-items:center; z-index:125; }
     .btn-primary{
       background: linear-gradient(90deg, rgba(0,0,255,0.95), rgba(0,0,255,0.86));
-      color:#fff; padding:.55rem .95rem; border-radius:999px; font-weight:800; border:0;
+      color: #fff;
+      padding: .55rem .95rem;
+      border-radius: 999px;
+      font-weight:800;
+      border:0;
       box-shadow: 0 8px 20px rgba(0,0,255,0.08);
-      transition: transform .12s ease, box-shadow .12s ease;
     }
-    .btn-primary:hover{ transform:translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,255,0.08); }
-
     .btn-secondary{
-      background:transparent; border:1px solid rgba(0,0,0,0.06); padding:.48rem .8rem; border-radius:9px; font-weight:600;
-      color:var(--text);
+      background:transparent;
+      border:1px solid rgba(0,0,0,0.06);
+      padding:.48rem .8rem;
+      border-radius:9px;
+      font-weight:600;
     }
-
     .menu-toggle{ display:none; background:transparent; border:0; font-size:1.25rem; padding:.35rem; border-radius:8px; cursor:pointer; }
 
     @media (max-width:920px){
@@ -113,9 +148,9 @@
     }
 
     /* Main spacing - JS sets padding-top to header height exactly */
-    main{ max-width:var(--container); margin:0 auto; padding:1rem; transition: padding-top .12s ease; }
+    main{ position: relative; z-index: 110; max-width:var(--container); margin:0 auto; padding:1rem; transition: padding-top .12s ease; }
 
-    /* Layout / content */
+    /* Content layout */
     .hero{ display:grid; grid-template-columns:1fr 360px; gap:18px; align-items:start; margin-top:6px; }
     @media (max-width:980px){ .hero{ grid-template-columns:1fr; } }
 
@@ -133,7 +168,7 @@
 
     .contact-card{ display:flex; flex-direction:column; gap:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg, #fff, #fbfdff); border:1px solid rgba(11,43,70,0.03); box-shadow:var(--shadow); }
 
-    .section { margin-top:20px; }
+    .section{ margin-top:20px; }
     .section-title{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
     .section-title h2{ margin:0; color:var(--text); font-size:1.05rem; font-weight:700; }
 
@@ -151,7 +186,7 @@
 
     footer{ margin-top:26px; padding:14px 0; text-align:center; color:var(--muted); font-size:.95rem; }
 
-    /* Mobile drawer (full-screen overlay on small screens, small card on desktop) */
+    /* Mobile drawer/backdrop for menu */
     .drawer-backdrop{ position:fixed; inset:0; background:rgba(8,12,20,0.36); z-index:130; display:none; align-items:flex-start; justify-content:flex-end; }
     .drawer-backdrop.open{ display:flex; }
     .drawer{
@@ -169,12 +204,9 @@
       overflow:hidden;
     }
     .drawer.open{ transform:translateY(0) scale(1); opacity:1; pointer-events:auto; }
-    @media (max-width:920px){
-      .drawer{ max-width:100%; border-radius:0; margin:0; margin-top:var(--header-h); }
-    }
+    @media (max-width:920px){ .drawer{ max-width:100%; border-radius:0; margin:0; margin-top:var(--header-h); } }
     .drawer .inner{ padding:14px; display:flex; flex-direction:column; gap:8px; }
 
-    /* Focus visible for keyboard users */
     :focus{ outline:3px solid rgba(0,0,255,0.12); outline-offset:3px; }
   </style>
 </head>
@@ -185,7 +217,6 @@
         <div class="logo-wrap" id="logoWrap">
           <img id="brandLogo" src="https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Pics/LOGO.jpg" alt="KENYEN logo">
         </div>
-
         <div class="titles">
           <div class="brand-title">Kenyen Steel Works & Construction</div>
           <div class="brand-sub">Steel Fabrication • Civil Construction</div>
@@ -225,7 +256,7 @@
   <main id="main" class="container" role="main">
     <!-- HERO -->
     <section id="home" class="hero" aria-labelledby="heroTitle">
-      <div class="card">
+      <div class="card" aria-labelledby="heroTitle">
         <div class="kicker" aria-hidden="true">Trusted • Local • Certified</div>
         <h1 id="heroTitle">Durable steelwork and reliable construction — delivered with care</h1>
         <p class="lead">We provide structural steel fabrication, civil construction and turnkey project delivery. Safety, quality and clear communication are priorities for every job.</p>
@@ -383,13 +414,13 @@
           <div style="color:var(--muted)">Mon–Sat: 8:00 AM – 5:00 PM</div>
           <div style="height:10px"></div>
           <div style="font-weight:700;color:var(--text)">Company</div>
-          <div style="color:var(--muted)">Kenyen Steel Works & Construction Services</div>
+          <div style="color:var(--muted)">Kenyen Steel Works &amp; Construction Services</div>
         </aside>
       </div>
     </section>
 
     <footer>
-      <div style="padding:12px 0; color:var(--muted)">© <span id="year"></span> Kenyen Steel Works & Construction Services — All rights reserved.</div>
+      <div style="padding:12px 0; color:var(--muted)">© <span id="year"></span> Kenyen Steel Works &amp; Construction Services — All rights reserved.</div>
     </footer>
   </main>
 
@@ -407,16 +438,15 @@
 
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      // update CSS variable and main padding so header does NOT overlap content
+      // update header height CSS variable and main padding so header doesn't overlap content
       function syncHeaderHeight(){
         const h = header.offsetHeight;
         document.documentElement.style.setProperty('--header-h', h + 'px');
-        if (main) main.style.paddingTop = (h + 6) + 'px'; // small offset for breathing room
-        // ensure drawer aligns under header on mobile
+        if (main) main.style.paddingTop = (h + 8) + 'px';
         if (drawerBackdrop) drawerBackdrop.style.paddingTop = (h + 8) + 'px';
       }
 
-      // Smooth scroll that accounts for header height
+      // Smooth scroll accounting for header height
       function smoothTo(id){
         const el = document.getElementById(id);
         if (!el) return;
@@ -425,7 +455,7 @@
         window.scrollTo({ top, behavior: 'smooth' });
       }
 
-      // Highlight nav as user scrolls
+      // Highlight active nav while scrolling
       function highlightNav(){
         const offset = (header ? header.offsetHeight : 0) + 22;
         let current = 'home';
@@ -447,7 +477,6 @@
         drawerBackdrop.setAttribute('aria-hidden','false');
         drawer.setAttribute('aria-modal','true');
         if (menuToggle) menuToggle.setAttribute('aria-expanded','true');
-        // disable body scroll on small screens
         if (window.matchMedia('(max-width:920px)').matches) document.body.style.overflow = 'hidden';
       }
       function closeDrawer(){
@@ -461,10 +490,10 @@
       }
       function toggleDrawer(){ if (drawer.classList.contains('open')) closeDrawer(); else openDrawer(); }
 
-      // Wire events
+      // Event wiring
       window.addEventListener('load', () => { syncHeaderHeight(); highlightNav(); });
       window.addEventListener('resize', () => { syncHeaderHeight(); highlightNav(); });
-      window.addEventListener('scroll', () => { highlightNav(); });
+      window.addEventListener('scroll', highlightNav, { passive: true });
 
       navLinks.forEach(a => {
         a.addEventListener('click', function(e){
@@ -482,14 +511,13 @@
         });
       }
 
-      // Clicking backdrop closes drawer
       if (drawerBackdrop){
         drawerBackdrop.addEventListener('click', (e)=>{
           if (e.target === drawerBackdrop) closeDrawer();
         });
       }
 
-      // close drawer when resize from mobile to desktop
+      // close drawer when resizing to desktop
       const mediaQuery = window.matchMedia('(min-width:921px)');
       if (mediaQuery && mediaQuery.addEventListener) {
         mediaQuery.addEventListener('change', (e)=>{ if (e.matches) closeDrawer(); });
@@ -497,10 +525,9 @@
         mediaQuery.addListener((e)=>{ if (e.matches) closeDrawer(); });
       }
 
-      // keyboard: escape closes drawer
       window.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeDrawer(); });
 
-      // Logo fallback
+      // Logo fallback: if image fails, show initials
       (function logoFallback(){
         if (!brandLogo || !logoWrap) return;
         function fallback(){
@@ -515,7 +542,7 @@
         }
       })();
 
-      // initial sync (after fonts/images may settle)
+      // initial sync after fonts/images settle
       setTimeout(syncHeaderHeight, 120);
       setTimeout(syncHeaderHeight, 700);
     })();
