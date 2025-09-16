@@ -7,16 +7,24 @@
   <meta name="description" content="KENYEN — structural steel fabrication, civil construction and turnkey delivery in Panabo City." />
 
   <style>
+    /*
+      Remixed color palette:
+      - Background: subtle cool gradient (neutral, non-distracting)
+      - Primary actions and headings: steel/teal-blue
+      - Accent: warm amber (used sparingly for badges/kickers)
+      - Secondary text: slate gray
+      Avoid mixing many vibrant colors in one small area.
+    */
     :root{
-      --bg-start: #eef3f6;
-      --bg-end:   #e3eaf0;
-      --surface:  #ffffff;
+      --bg-start: #eef3f6;        /* light cool */
+      --bg-end:   #e3eaf0;        /* slightly deeper */
+      --surface:  #ffffff;        /* card background */
       --panel-bg: rgba(255,255,255,0.96);
-      --primary:  #1f6f8b;
-      --secondary:#0f2b33;
-      --muted:    #657980;
-      --accent:   #ffb84d;
-      --danger:   #d64545;
+      --primary:  #1f6f8b;        /* steel/teal-blue */
+      --secondary:#0f2b33;        /* dark slate for high-contrast text */
+      --muted:    #657980;        /* muted slate for secondary text */
+      --accent:   #ffb84d;        /* warm amber - used sparingly */
+      --danger:   #d64545;        /* for errors/rare badges */
       --radius:   12px;
       --container:1100px;
       --base-size:18px;
@@ -34,6 +42,8 @@
       -moz-osx-font-smoothing: grayscale;
       color: var(--secondary);
       line-height: var(--line-height);
+
+      /* subtle vertical gradient background - clean and professional */
       background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
       background-attachment: fixed;
     }
@@ -43,6 +53,7 @@
 
     .container { max-width: var(--container); margin: 0 auto; padding: 0 1rem; }
 
+    /* Header */
     header {
       position: sticky;
       top: 0;
@@ -114,6 +125,7 @@
 
     main { padding-top: 18px; padding-bottom: 40px; }
 
+    /* Cards - high readability over the gradient background */
     .card {
       background: var(--panel-bg);
       border-radius: var(--radius);
@@ -180,40 +192,6 @@
     .contact-info { background:var(--panel-bg); padding:14px; border-radius:10px; border:1px solid rgba(15,43,51,0.04); box-shadow:0 8px 20px rgba(7,24,39,0.04); }
 
     footer { margin-top:28px; padding:18px 0; text-align:center; color:var(--muted); font-size:0.98rem; }
-
-    /* Mid-page logo (between About and Projects) */
-    .mid-logo {
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      margin: 18px 0;
-      gap: 12px;
-    }
-    .mid-logo .logo-card {
-      background: var(--panel-bg);
-      padding: 10px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(15,43,51,0.04);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .mid-logo img {
-      display:block;
-      width: 220px;
-      max-width: calc(100% - 16px);
-      height: auto;
-      border-radius: 10px;
-      background: #fff;
-      padding: 6px;
-      object-fit:contain;
-    }
-
-    @media (max-width:520px) {
-      .mid-logo img { width: 160px; }
-      .hero { grid-template-columns: 1fr; }
-    }
 
     :focus { outline: 3px solid rgba(31,111,139,0.12); outline-offset:3px; }
   </style>
@@ -363,14 +341,6 @@
         </aside>
       </div>
     </section>
-
-    <!-- MID-PAGE LOGO (between About and Projects) -->
-    <div class="mid-logo container" aria-hidden="false">
-      <div class="logo-card" role="img" aria-label="KenYen logo">
-        <img src="https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Pics/LOGO.jpg"
-             alt="KENYEN Steel Works & Construction logo">
-      </div>
-    </div>
 
     <!-- PROJECTS -->
     <section id="projects" aria-labelledby="projectsHeading">
@@ -563,21 +533,6 @@
         } else {
           brandLogo.addEventListener('error', showText, { once: true });
           setTimeout(() => { if (brandLogo.naturalWidth === 0) showText(); }, 3000);
-        }
-      })();
-
-      // Mid-logo fallback: if image doesn't load, hide the block so layout stays clean
-      (function midLogoFallback() {
-        const midImg = document.querySelector('.mid-logo img');
-        const midBlock = document.querySelector('.mid-logo');
-        if (!midImg || !midBlock) return;
-        function hideIfBroken() {
-          if (midImg.naturalWidth === 0) midBlock.style.display = 'none';
-        }
-        if (midImg.complete) hideIfBroken();
-        else {
-          midImg.addEventListener('error', () => { midBlock.style.display = 'none'; }, { once: true });
-          setTimeout(hideIfBroken, 3000);
         }
       })();
 
