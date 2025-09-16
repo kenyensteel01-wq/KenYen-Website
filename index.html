@@ -187,11 +187,9 @@
   <header role="banner" aria-label="Main header">
     <div class="header-inner container">
       <a class="brand" href="#home" title="KENYEN home">
-        <!-- logo-wrap now contains the actual logo image (LOGO.jpg) next to the name -->
+        <!-- updated logo path to the requested location -->
         <div class="logo-wrap" id="logoWrap">
-          <!-- Put your LOGO.jpg file in the same folder as this HTML file.
-               This image will be displayed beside the company name as requested. -->
-          <img id="brandLogo" src="LOGO.jpg" alt="KENYEN Steel Works & Construction Services logo">
+          <img id="brandLogo" src="KenYen-Website/Pics/LOGO.jpg" alt="KENYEN Steel Works & Construction Services logo">
         </div>
 
         <div class="titles">
@@ -529,7 +527,7 @@
       window.addEventListener('load', highlight);
       window.addEventListener('resize', highlight);
 
-      // Logo image fallback: if LOGO.jpg missing or fails, show "KENYEN" text inside logo-wrap
+      // Logo image fallback: if specified image missing or fails, show "KENYEN" text inside logo-wrap
       function setLogoFallback(){
         if(!brandLogo || !logoWrap) return;
         if(brandLogo.complete){
@@ -542,7 +540,6 @@
       }
       function showLogoText(){
         logoWrap.innerHTML = '<div class="logo-text" aria-hidden="true">KENYEN</div>';
-        // set a mixed background so it still matches the color scheme
         logoWrap.style.background = 'linear-gradient(135deg,var(--blue), var(--yellow), var(--red))';
       }
       setLogoFallback();
