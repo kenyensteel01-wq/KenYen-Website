@@ -6,16 +6,14 @@
   <title>Kenyen Steel Works & Construction Services</title>
   <meta name="description" content="Kenyen — structural steel fabrication & construction." />
 
-  <!-- Poppins font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg-color: #f4f6f8;
       --card: #ffffff;
-      --panel-bg: rgba(255,255,255,0.78); /* slightly translucent for glass look */
+      --panel-bg: rgba(255,255,255,0.78);
       --muted-bg: #eef3f7;
       --text: #0b2b3a;
       --primary: rgba(0,0,255,0.88);
@@ -26,16 +24,15 @@
       --radius: 12px;
       --container: 1100px;
       --shadow: 0 10px 30px rgba(10,30,60,0.06);
-      --header-h: 86px; /* updated by JS */
-      --bg-image-url: 'https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Picture1.png';
-      --logo-wm: url('https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Pics/LOGO.jpg');
+      --header-h: 86px;
+      --bg-img-url: 'https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Picture1.png';
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
     body{
       margin:0;
-      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family:'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       color:var(--text);
       line-height:1.5;
       -webkit-font-smoothing:antialiased;
@@ -43,36 +40,39 @@
       overflow-x: hidden;
     }
 
-    /* Background element (image + stylish overlays) */
+    /* Background container - now uses an <img> with object-fit: contain so the whole image is always visible */
     .site-bg{
       position: fixed;
       inset: 0;
       z-index: -2;
       pointer-events: none;
-      will-change: transform, opacity;
-      transform: translateZ(0);
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      background: linear-gradient(180deg, rgba(6,10,18,0.04), rgba(255,255,255,0.02));
     }
-    .site-bg .bg-image {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(180deg, rgba(6,10,18,0.22), rgba(6,10,18,0.22)),
-        url(https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Picture1.png);
-      background-size: cover;
-      background-position: center center;
-      filter: saturate(0.95) contrast(0.92) brightness(0.68);
+    .site-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;       /* ensures whole image is visible without cropping */
+      object-position: center;
+      display: block;
+      filter: saturate(0.95) contrast(0.92) brightness(0.7);
       transform-origin: center;
       will-change: transform;
-      transition: transform 0.2s linear;
+      transition: transform 0.18s linear;
+      pointer-events: none;
+      user-select: none;
     }
-    /* soft radial vignette and subtle color wash for appeal */
+
+    /* overlays and subtle vignette */
     .site-bg::after{
       content: "";
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(60% 60% at 50% 30%, rgba(0,0,60,0.12) 0%, rgba(0,0,60,0.06) 30%, rgba(0,0,60,0.14) 100%),
-        linear-gradient(180deg, rgba(0,0,120,0.02), rgba(255,199,0,0.02));
+        radial-gradient(60% 60% at 50% 30%, rgba(0,0,60,0.08) 0%, rgba(0,0,60,0.03) 30%, rgba(0,0,60,0.10) 100%),
+        linear-gradient(180deg, rgba(0,0,120,0.02), rgba(255,199,0,0.01));
       mix-blend-mode: multiply;
       pointer-events: none;
     }
@@ -83,9 +83,9 @@
       position: fixed;
       right: 24px;
       bottom: 24px;
-      width: 160px;
-      height: 160px;
-      background-image: var(--logo-wm);
+      width: 140px;
+      height: 140px;
+      background-image: url('https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Pics/LOGO.jpg');
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
@@ -96,11 +96,11 @@
     }
 
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; height: auto; }
+    img { display:block; max-width:100%; height:auto; }
 
     .container{ max-width: var(--container); margin: 0 auto; padding: 0 1rem; }
 
-    /* Header (pinned) */
+    /* Header (fixed) */
     header{
       position: fixed;
       inset: 0 0 auto 0;
@@ -108,8 +108,8 @@
       display:flex;
       align-items:center;
       z-index: 120;
-      background: rgba(255,255,255,0.82);
-      border-bottom: 1px solid rgba(11,43,70,0.04);
+      background: rgba(255,255,255,0.86);
+      border-bottom: 1px solid rgba(11,43,70,0.06);
       box-shadow: var(--shadow);
       backdrop-filter: blur(8px) saturate(1.05);
     }
@@ -135,7 +135,7 @@
     .logo-wrap img{ width:86%; height:86%; object-fit:contain; display:block; }
 
     .titles{ display:flex; flex-direction:column; min-width:0; }
-    .brand-title{ font-weight:700; font-size:clamp(1.05rem,2.6vw,1.6rem); color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .brand-title{ font-weight:700; font-size:clamp(1.05rem,2.6vw,1.5rem); color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .brand-sub{ font-size:0.88rem; color:var(--muted); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
     nav{ display:flex; gap:8px; align-items:center; justify-self:center; min-width:0; overflow:hidden; z-index:125; }
@@ -149,7 +149,7 @@
       background: transparent;
     }
     .nav-link:hover{ background: var(--primary-100); transform: translateY(-1px); }
-    .nav-link[aria-current="true"]{ background: var(--primary-100); }
+    .nav-link[aria-current="true"]{ background: var(--primary-100); color:var(--primary); }
 
     .actions{ display:flex; gap:10px; align-items:center; z-index:125; }
     .btn-primary{
@@ -177,10 +177,8 @@
       .logo-wrap{ width:56px; height:56px; }
     }
 
-    /* Main spacing - JS sets padding-top to header height exactly */
     main{ position: relative; z-index: 110; max-width:var(--container); margin:0 auto; padding:1rem; transition: padding-top .12s ease; }
 
-    /* Content layout */
     .hero{ display:grid; grid-template-columns:1fr 360px; gap:18px; align-items:start; margin-top:6px; }
     @media (max-width:980px){ .hero{ grid-template-columns:1fr; } }
 
@@ -215,7 +213,6 @@
 
     footer{ margin-top:26px; padding:14px 0; text-align:center; color:var(--muted); font-size:.95rem; }
 
-    /* Drawer/backdrop for mobile menu */
     .drawer-backdrop{ position:fixed; inset:0; background:rgba(8,12,20,0.36); z-index:130; display:none; align-items:flex-start; justify-content:flex-end; }
     .drawer-backdrop.open{ display:flex; }
     .drawer{
@@ -238,7 +235,6 @@
 
     :focus{ outline:3px solid rgba(0,0,255,0.12); outline-offset:3px; }
 
-    /* Responsive tweaks for very small devices */
     @media (max-width:420px){
       .hero { gap:12px; }
       .brand-title { font-size:1.05rem; }
@@ -247,9 +243,9 @@
   </style>
 </head>
 <body>
-  <!-- Decorative background element (controlled by JS for subtle parallax and graceful fallback) -->
+  <!-- Background using <img> with object-fit:contain so the whole picture is visible -->
   <div class="site-bg" id="siteBg" aria-hidden="true">
-    <div class="bg-image" id="bgImage"></div>
+    <img id="bgImageImg" src="https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Picture1.png" alt="Decorative background image">
   </div>
 
   <header id="siteHeader" role="banner" aria-label="Main header">
@@ -278,7 +274,7 @@
     </div>
   </header>
 
-  <!-- Drawer/backdrop used for mobile & small desktop dropdown -->
+  <!-- Drawer/backdrop used for mobile -->
   <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true">
     <div class="drawer" id="drawer" role="dialog" aria-modal="false" aria-label="Menu">
       <div class="inner">
@@ -329,7 +325,7 @@
         <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
           <div>
             <div style="font-weight:700">Email</div>
-            <div style="color:var(--muted)"><a href="mailto:kenyenconstructionservices72@gmail.com">kenyenconstructionservices@gmail.com</a></div>
+            <div style="color:var(--muted)"><a href="mailto:kenyenconstructionservices@gmail.com">kenyenconstructionservices@gmail.com</a></div>
           </div>
           <div style="font-weight:700;color:var(--danger)">✉️</div>
         </div>
@@ -340,7 +336,7 @@
         </div>
 
         <div style="margin-top:auto; color:var(--muted); font-size:.95rem">
-          Office: Phase III, Purok 9,  Urban Salvacion, Panabo City — Monday–Saturday 8:00 AM – 5:00 PM
+          Office: Phase III, Purok 9, Urban Salvacion, Panabo City — Monday–Saturday 8:00 AM – 5:00 PM
         </div>
       </aside>
     </section>
@@ -477,11 +473,11 @@
       const brandLogo = document.getElementById('brandLogo');
       const logoWrap = document.getElementById('logoWrap');
       const siteBg = document.getElementById('siteBg');
-      const bgImage = document.getElementById('bgImage');
+      const bgImg = document.getElementById('bgImageImg');
 
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      // update header height CSS variable and main padding so header doesn't overlap content
+      // sync header height so header doesn't overlap content
       function syncHeaderHeight(){
         const h = header.offsetHeight;
         document.documentElement.style.setProperty('--header-h', h + 'px');
@@ -489,7 +485,7 @@
         if (drawerBackdrop) drawerBackdrop.style.paddingTop = (h + 8) + 'px';
       }
 
-      // Smooth scroll accounting for header height
+      // smooth scroll accounting for header height
       function smoothTo(id){
         const el = document.getElementById(id);
         if (!el) return;
@@ -498,7 +494,7 @@
         window.scrollTo({ top, behavior: 'smooth' });
       }
 
-      // Highlight active nav while scrolling
+      // highlight active nav while scrolling
       function highlightNav(){
         const offset = (header ? header.offsetHeight : 0) + 22;
         let current = 'home';
@@ -533,7 +529,7 @@
       }
       function toggleDrawer(){ if (drawer.classList.contains('open')) closeDrawer(); else openDrawer(); }
 
-      // Event wiring
+      // wiring
       window.addEventListener('load', () => { syncHeaderHeight(); highlightNav(); });
       window.addEventListener('resize', () => { syncHeaderHeight(); highlightNav(); });
       window.addEventListener('scroll', highlightNav, { passive: true });
@@ -560,7 +556,6 @@
         });
       }
 
-      // close drawer when resizing to desktop
       const mediaQuery = window.matchMedia('(min-width:921px)');
       if (mediaQuery && mediaQuery.addEventListener) {
         mediaQuery.addEventListener('change', (e)=>{ if (e.matches) closeDrawer(); });
@@ -570,7 +565,7 @@
 
       window.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeDrawer(); });
 
-      // Logo fallback: if image fails, show initials
+      // Logo fallback: initials if image fails
       (function logoFallback(){
         if (!brandLogo || !logoWrap) return;
         function fallback(){
@@ -585,71 +580,62 @@
         }
       })();
 
-      // Background pre-load & graceful fallback
-      (function preloadBackground(){
+      // Background image loading & graceful fallback
+      (function bgPreload(){
         const url = 'https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Picture1.png';
         const img = new Image();
         let done = false;
         img.onload = function(){
           done = true;
-          // success: leave siteBg visible (already styled via CSS)
-          // ensure bgImage uses the image in case CSS didn't pick it up
-          bgImage.style.backgroundImage = `linear-gradient(180deg, rgba(6,10,18,0.22), rgba(6,10,18,0.22)), url(${url})`;
+          // Set src on the element already present (helps if browser blocked CSS url)
+          if (bgImg && bgImg.src !== url) bgImg.src = url;
+          // ensure image has intended filters/opacity already set via CSS
         };
         img.onerror = function(){
           done = true;
-          // hide decorative bg and fallback to neat gradient
+          // hide decorative bg and fallback to gradient
           if (siteBg) siteBg.style.display = 'none';
           document.body.style.background = 'linear-gradient(180deg,#f6f8fa,#e9eef6)';
-          // make panels fully opaque to ensure readability
-          document.querySelectorAll('.card, .contact-card, .drawer, .project').forEach(el => {
-            el.style.background = 'var(--card)';
-            el.style.backdropFilter = 'none';
-          });
         };
         img.src = url;
         setTimeout(() => {
           if (!done) {
-            // assume slow or blocked - keep showing siteBg but slightly dim it
-            bgImage.style.filter = 'saturate(0.9) contrast(0.9) brightness(0.65)';
+            // keep showing but dim slightly if loading is slow
+            if (bgImg) bgImg.style.filter = 'saturate(0.9) contrast(0.9) brightness(0.65)';
           }
         }, 3000);
       })();
 
-      // Parallax effect for background: subtle translate on scroll & reduced motion support
-      (function parallaxBg(){
-        const bg = document.getElementById('bgImage');
-        if (!bg) return;
+      // Subtle parallax on scroll (moves the contained image slightly)
+      (function parallax(){
+        if (!bgImg) return;
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         function onScroll(){
           const y = window.scrollY;
-          // subtle movement (0.12 factor)
-          const t = Math.round(y * 0.12);
-          if (!reduce) bg.style.transform = `translate3d(0, ${t}px, 0) scale(1.03)`;
+          const t = Math.round(y * 0.08); // more subtle since image is contained
+          if (!reduce) bgImg.style.transform = `translate3d(0, ${t}px, 0) scale(1)`;
         }
         window.addEventListener('scroll', onScroll, { passive: true });
-        // initial position
         onScroll();
       })();
 
-      // Simple image fallbacks for CEO and mid items if necessary
-      (function imageFallbacks(){
+      // CEO image fallback
+      (function ceoFallback(){
         const ceoImg = document.querySelector('#ceo img');
-        function ceoFallback(){
-          const photo = document.querySelector('#ceo div[style*="width:120px"]');
+        if (!ceoImg) return;
+        function fallback(){
+          const photo = ceoImg.parentElement;
           if (photo) photo.innerHTML = '<div style="width:100%;height:100%;display:grid;place-items:center;background:#eef8ff;color:var(--text);font-weight:800;font-size:26px;border-radius:8px;">EC</div>';
         }
-        if (ceoImg){
-          if (ceoImg.complete){
-            if (ceoImg.naturalWidth === 0) ceoFallback();
-          } else {
-            ceoImg.addEventListener('error', ceoFallback, { once:true });
-            setTimeout(()=>{ if (ceoImg.naturalWidth === 0) ceoFallback(); }, 2000);
-          }
+        if (ceoImg.complete){
+          if (ceoImg.naturalWidth === 0) fallback();
+        } else {
+          ceoImg.addEventListener('error', fallback, { once:true });
+          setTimeout(()=>{ if (ceoImg.naturalWidth === 0) fallback(); }, 2000);
         }
       })();
 
-      // initial sync after fonts/images settle
+      // initial sync after fonts load
       setTimeout(syncHeaderHeight, 120);
       setTimeout(syncHeaderHeight, 700);
     })();
