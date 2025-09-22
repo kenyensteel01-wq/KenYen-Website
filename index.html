@@ -40,7 +40,7 @@
       overflow-x: hidden;
     }
 
-    /* Full-image background (contain = whole image visible) */
+    /* Background image (contain = whole image visible) */
     .site-bg{
       position: fixed;
       inset: 0;
@@ -54,8 +54,8 @@
     .site-bg img {
       width: 100%;
       height: 100%;
-      max-height: 100vh;         /* ensure it never exceeds the viewport height */
-      object-fit: contain;       /* show the whole image */
+      max-height: 100vh;
+      object-fit: contain;
       object-position: center;
       display: block;
       filter: saturate(0.98) contrast(0.95) brightness(0.72);
@@ -76,7 +76,6 @@
       pointer-events: none;
     }
 
-    /* soft watermark */
     body::after{
       content: "";
       position: fixed;
@@ -99,18 +98,16 @@
 
     .container{ max-width: var(--container); margin: 0 auto; padding: 0 1rem; }
 
-    /* Header (fixed) */
+    /* Header - made flexible so content never gets clipped */
     header{
       position: fixed;
       inset: 0 0 auto 0;
-      height: var(--header-h);
-      display:flex;
-      align-items:center;
       z-index: 120;
       background: rgba(255,255,255,0.90);
       border-bottom: 1px solid rgba(11,43,70,0.06);
       box-shadow: var(--shadow);
       backdrop-filter: blur(8px) saturate(1.05);
+      padding: 10px 0; /* flexible vertical padding instead of fixed height */
     }
     .header-inner{
       width:100%;
@@ -119,13 +116,14 @@
       padding:0 .9rem;
       display:flex;
       align-items:center;
-      justify-content:space-between;
+      justify-content:flex-start;
       gap:12px;
+      flex-wrap:wrap; /* allows items to wrap onto a new line if there's not enough horizontal space */
     }
 
-    .brand{ display:flex; gap:12px; align-items:center; min-width:0; z-index: 125; }
+    .brand{ display:flex; gap:12px; align-items:center; min-width:0; z-index: 125; flex: 0 1 auto; }
     .logo-wrap{
-      width:64px; height:64px; border-radius:10px; overflow:hidden; display:grid; place-items:center;
+      width:56px; height:56px; border-radius:10px; overflow:hidden; display:grid; place-items:center;
       background: linear-gradient(180deg, rgba(0,0,255,0.12), rgba(255,199,0,0.04));
       box-shadow: 0 8px 26px rgba(0,0,0,0.06);
       flex-shrink:0;
@@ -133,37 +131,51 @@
     }
     .logo-wrap img{ width:86%; height:86%; object-fit:contain; display:block; }
 
-    .titles{ display:flex; flex-direction:column; min-width:0; }
-    .brand-title{ font-weight:700; font-size:clamp(1.05rem,2.6vw,1.5rem); color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .brand-sub{ font-size:0.88rem; color:var(--muted); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .titles{ display:flex; flex-direction:column; min-width:0; max-width: calc(100vw - 420px); }
+    .brand-title{ font-weight:700; font-size:clamp(1rem,2.4vw,1.25rem); color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .brand-sub{ font-size:0.85rem; color:var(--muted); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-    nav{ display:flex; gap:8px; align-items:center; justify-self:center; min-width:0; overflow:hidden; z-index:125; }
+    /* Nav is allowed to shrink; will hide on small screens */
+    nav{ display:flex; gap:8px; align-items:center; justify-self:center; min-width:0; overflow:hidden; flex: 1 1 auto; }
     .nav-link{
-      padding:.46rem .7rem;
+      padding:.38rem .62rem;
       border-radius:9px;
       font-weight:600;
-      font-size:0.95rem;
+      font-size:0.93rem;
       color:var(--text);
       transition: background .15s ease, transform .12s ease;
       background: transparent;
+      white-space:nowrap;
     }
     .nav-link:hover{ background: var(--primary-100); transform: translateY(-1px); }
     .nav-link[aria-current="true"]{ background: var(--primary-100); color:var(--primary); }
 
-    .actions{ display:flex; gap:10px; align-items:center; z-index:125; }
+    /* Actions area pinned to the right; wrap if needed */
+    .actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      z-index:125;
+      margin-left:auto; /* pushes actions to the far right on the same row when space allows */
+      flex: 0 0 auto;
+      flex-wrap:wrap;
+    }
+    .actions > * { margin: 2px 0; } /* small vertical breathing room when wrapped */
+
     .btn-primary{
       background: linear-gradient(90deg, rgba(0,0,255,0.96), rgba(0,0,255,0.86));
       color: #fff;
-      padding: .55rem .95rem;
+      padding: .5rem .9rem;
       border-radius: 999px;
       font-weight:800;
       border:0;
       box-shadow: 0 8px 20px rgba(0,0,255,0.08);
+      font-size:0.95rem;
     }
     .btn-secondary{
       background:transparent;
       border:1px solid rgba(0,0,0,0.06);
-      padding:.48rem .8rem;
+      padding:.46rem .8rem;
       border-radius:9px;
       font-weight:600;
     }
@@ -173,11 +185,13 @@
       nav{ display:none; }
       .brand-sub{ display:none; }
       .menu-toggle{ display:inline-flex; }
-      .logo-wrap{ width:56px; height:56px; }
+      .logo-wrap{ width:50px; height:50px; }
+      .actions { margin-left: 0; width: 100%; justify-content: flex-end; }
+      .header-inner { padding-left: 12px; padding-right: 12px; }
     }
 
     /* main: ensure there is enough bottom padding so last sections (Contact) never get sliced */
-    main{ position: relative; z-index: 110; max-width:var(--container); margin:0 auto; padding:1rem; padding-bottom: 140px; transition: padding-top .12s ease; }
+    main{ position: relative; z-index: 110; max-width:var(--container); margin:0 auto; padding:1rem; padding-bottom: 160px; transition: padding-top .12s ease; }
 
     /* Content layout */
     .hero{ display:grid; grid-template-columns:1fr 360px; gap:18px; align-items:start; margin-top:6px; }
@@ -209,7 +223,7 @@
     .project{ background:var(--panel-bg); border-radius:10px; padding:12px; border:1px solid rgba(11,43,70,0.03); box-shadow: 0 8px 18px rgba(11,43,70,0.04); display:flex; flex-direction:column; gap:8px; backdrop-filter: blur(6px); }
     .project .media{ height:110px; border-radius:8px; background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.9)); display:grid; place-items:center; font-weight:700; color:var(--text); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
 
-    /* Contact grid: ensure content isn't clipped — min-height: 0 to allow proper flex/grid sizing */
+    /* Contact grid: ensure content isn't clipped */
     .contact-grid{
       display:grid;
       grid-template-columns: 1fr 320px;
@@ -224,7 +238,6 @@
 
     footer{ margin-top:26px; padding:14px 0; text-align:center; color:var(--muted); font-size:.95rem; }
 
-    /* Drawer/backdrop for mobile menu */
     .drawer-backdrop{ position:fixed; inset:0; background:rgba(8,12,20,0.36); z-index:130; display:none; align-items:flex-start; justify-content:flex-end; }
     .drawer-backdrop.open{ display:flex; }
     .drawer{
@@ -252,11 +265,12 @@
       .hero { gap:12px; }
       .brand-title { font-size:1.05rem; }
       .logo-wrap { width:48px; height:48px; }
+      /* ensure actions don't overflow the viewport */
+      .actions { justify-content: flex-end; gap:8px; }
     }
   </style>
 </head>
 <body>
-  <!-- Background image (contain so whole picture is visible) -->
   <div class="site-bg" id="siteBg" aria-hidden="true">
     <img id="bgImageImg" src="https://raw.githubusercontent.com/kenyensteel01-wq/KenYen-Website/main/Picture1.png" alt="Decorative background image">
   </div>
@@ -273,21 +287,21 @@
         </div>
       </a>
 
-      <nav role="navigation" aria-label="Primary navigation">
+      <nav role="navigation">
         <a class="nav-link" href="#home" data-target="home" aria-current="true">Home</a>
         <a class="nav-link" href="#about" data-target="about">About</a>
         <a class="nav-link" href="#projects" data-target="projects">Projects</a>
         <a class="nav-link" href="#contact" data-target="contact">Contact</a>
       </nav>
 
-      <div class="actions">
+      <div class="actions" role="group" aria-label="Header actions">
         <a class="btn-primary" href="#contact">Request Quote</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+        <a class="btn-secondary" href="tel:+63848230528">Call (084) 823 0528</a>
+        <button class="menu-toggle" id="menuToggle" aria-controls="drawer" aria-expanded="false" aria-label="Open menu">☰</button>
       </div>
     </div>
   </header>
 
-  <!-- Drawer/backdrop used for mobile -->
   <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true">
     <div class="drawer" id="drawer" role="dialog" aria-modal="false" aria-label="Menu">
       <div class="inner">
@@ -304,7 +318,6 @@
   </div>
 
   <main id="main" class="container" role="main">
-    <!-- HERO -->
     <section id="home" class="hero" aria-labelledby="heroTitle">
       <div class="card" aria-labelledby="heroTitle">
         <div class="kicker" aria-hidden="true">Trusted • Local • Certified</div>
@@ -354,7 +367,6 @@
       </aside>
     </section>
 
-    <!-- ABOUT -->
     <section id="about" class="section" aria-labelledby="aboutHeading">
       <div class="section-title">
         <h2 id="aboutHeading">About Kenyen</h2>
@@ -395,7 +407,6 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="projects" class="section" aria-labelledby="projectsHeading">
       <div class="section-title">
         <h2 id="projectsHeading">Projects</h2>
@@ -429,7 +440,6 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact" class="section" aria-labelledby="contactHeading">
       <div class="section-title">
         <h2 id="contactHeading">Contact</h2>
@@ -496,7 +506,8 @@
 
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      // Keep header height synced (so scrolling offset is correct)
+      // Keep header height synced so header doesn't overlap content.
+      // Because header height is now dynamic (wraps), recalculate on layout changes.
       function syncHeaderHeight(){
         const h = header.offsetHeight;
         document.documentElement.style.setProperty('--header-h', h + 'px');
@@ -551,6 +562,7 @@
       // Wiring
       window.addEventListener('load', () => { syncHeaderHeight(); highlightNav(); });
       window.addEventListener('resize', () => { syncHeaderHeight(); highlightNav(); });
+      window.addEventListener('orientationchange', () => { setTimeout(syncHeaderHeight, 120); });
       window.addEventListener('scroll', highlightNav, { passive: true });
 
       navLinks.forEach(a => {
@@ -621,13 +633,13 @@
         }, 3000);
       })();
 
-      // Parallax (very subtle)
+      // Parallax (subtle)
       (function parallax(){
         if (!bgImg) return;
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         function onScroll(){
           const y = window.scrollY;
-          const t = Math.round(y * 0.04); // subtle
+          const t = Math.round(y * 0.04);
           if (!reduce) bgImg.style.transform = `translate3d(0, ${t}px, 0) scale(1)`;
         }
         window.addEventListener('scroll', onScroll, { passive: true });
@@ -653,6 +665,9 @@
       // initial sync after fonts load
       setTimeout(syncHeaderHeight, 120);
       setTimeout(syncHeaderHeight, 700);
+      // also observe body mutations that might affect header size (e.g. when fonts arrive)
+      const ro = new ResizeObserver(syncHeaderHeight);
+      ro.observe(header);
     })();
   </script>
 </body>
